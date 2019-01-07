@@ -10,7 +10,8 @@ import java.util.List;
 @Data
 public class Role {
     /**
-     *
+     * role table
+     * 普通用户，管理员
      */
 
     @Id
