@@ -1,6 +1,5 @@
 package cn.ning.ysestate.controller;
 
-import cn.ning.ysestate.model.User;
 import cn.ning.ysestate.service.HouseService;
 import cn.ning.ysestate.service.RoleService;
 import cn.ning.ysestate.service.UserService;

@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 public class HouseInfo {
     /**
      * 房屋信息
-     * 名称，地址，sell价格or rent价格，图片，是否审核，详细，rent or sell
+     * 名称，地址，sell价格or rent价格，图片，是否审核，详细，rent or sell，上传时间
      */
 
     @Id
@@ -33,6 +33,8 @@ public class HouseInfo {
     private String rentOrSell;
     private String rentPrice;
     private String sellPrice;
+
+    private String uploadTime;
 
     @ManyToOne()
     @JoinColumn(name = "owner")
