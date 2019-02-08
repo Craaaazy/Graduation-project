@@ -56,6 +56,7 @@ public class RegisController {
         user.setUsername(map.get("username"));
         user.setPassword(map.get("password"));
         user.setEmail(map.get("email"));
+        user.setActive(false);
         user.setRole(role_user);
         user.setVaridateCode(validCode);
 
@@ -90,7 +91,6 @@ public class RegisController {
 
     @GetMapping(value = "/{validCode}")
     public String validate(@PathVariable String validCode){
-        System.out.println("entered");
         User user = userService.findByVaridateCode(validCode);
         user.setActive(true);
         userService.save(user);

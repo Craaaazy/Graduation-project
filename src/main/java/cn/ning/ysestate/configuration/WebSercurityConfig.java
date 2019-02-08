@@ -43,14 +43,12 @@ public class WebSercurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                     .antMatchers("/admin/**","/admin").hasRole("ADMIN")
-                    .anyRequest().permitAll();
-//                .and()
-//                    .formLogin()
-//                    .loginPage("/login")
-//                    .permitAll()
-//                .and()
-//                    .logout()
-//                    .permitAll();
+                .and()
+                    .formLogin()
+                    .loginPage("/login")
+                .and()
+                    .logout()
+                    .permitAll();
     }
 
     @Override
@@ -60,6 +58,8 @@ public class WebSercurityConfig extends WebSecurityConfigurerAdapter {
                 .authoritiesByUsernameQuery(rolesQuery)
                 .dataSource(dataSource)
                 .passwordEncoder(passwordEncoder);
+
+
     }
 
 }
