@@ -16,6 +16,18 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class WebSercurityConfig extends WebSecurityConfigurerAdapter {
 
+    PasswordEncoder passwordEncoder = new PasswordEncoder() {
+        @Override
+        public String encode(CharSequence charSequence) {
+            return charSequence.toString();
+        }
+
+        @Override
+        public boolean matches(CharSequence charSequence, String s) {
+            return s.equals(charSequence.toString());
+        }
+
+    };
 
     @Qualifier("dataSource")
     @Autowired
@@ -30,16 +42,24 @@ public class WebSercurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http
                 .authorizeRequests()
-                .antMatchers("/index").permitAll();
+                    .antMatchers("/admin/**","/admin").hasRole("ADMIN")
+                    .anyRequest().permitAll();
+//                .and()
+//                    .formLogin()
+//                    .loginPage("/login")
+//                    .permitAll()
+//                .and()
+//                    .logout()
+//                    .permitAll();
     }
 
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.jdbcAuthentication()
-//                .usersByUsernameQuery(usersQuery)
-//                .authoritiesByUsernameQuery(rolesQuery)
-//                .dataSource(dataSource)
-//                .passwordEncoder(passwordEncoder);
-//    }
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.jdbcAuthentication()
+                .usersByUsernameQuery(usersQuery)
+                .authoritiesByUsernameQuery(rolesQuery)
+                .dataSource(dataSource)
+                .passwordEncoder(passwordEncoder);
+    }
 
 }

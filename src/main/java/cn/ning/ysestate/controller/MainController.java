@@ -21,5 +21,9 @@ public class MainController {
         System.out.println(roleService.findByName("1"));
     }
 
+    @GetMapping("/login")
+    public String getLogin(){
+        return "/login";
+    }
 
 }

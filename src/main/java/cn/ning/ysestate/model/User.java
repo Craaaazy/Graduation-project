@@ -2,8 +2,10 @@ package cn.ning.ysestate.model;
 
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -24,7 +26,7 @@ public class User {
     private String username;
     @NotNull
     private String password;
-
+    @Email
     private String email;
     private Boolean active;
     private String varidateCode;
@@ -36,7 +38,7 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<HouseInfo> houses;
 
-    public User(@NotNull String username, @NotNull String password, String email, Boolean active, String varidateCode, Role role, List<HouseInfo> house) {
+    public User(@NotNull String username, @NotNull String password,@Email String email, Boolean active, String varidateCode, Role role, List<HouseInfo> house) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -45,4 +47,6 @@ public class User {
         this.role = role;
         this.houses = house;
     }
+
+    public User() {}
 }
