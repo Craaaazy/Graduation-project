@@ -22,7 +22,7 @@ public class User {
     @GenericGenerator(name="system-uuid", strategy = "org.hibernate.id.UUIDGenerator")
     private String id;
 
-    @NotNull
+    @Column(unique = true)
     private String username;
     @NotNull
     private String password;
@@ -38,14 +38,14 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<HouseInfo> houses;
 
-    public User(@NotNull String username, @NotNull String password,@Email String email, Boolean active, String varidateCode, Role role, List<HouseInfo> house) {
+    public User(String username, @NotNull String password, @Email String email, Boolean active, String varidateCode, Role role, List<HouseInfo> houses) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.active = active;
         this.varidateCode = varidateCode;
         this.role = role;
-        this.houses = house;
+        this.houses = houses;
     }
 
     public User() {}

@@ -20,26 +20,23 @@ public class HouseInfo {
     @GeneratedValue(generator = "uuid")
     private String id;
 
-    @Max(16)
     @NotNull
     private String title;
-    @NotNull
+
+    private String zone;   //新增的 用的varchar(128)  这里可能会报错
     private String locate;
-    @NotNull
+    private String detail;
     private String house_pic;
     @NotNull
-    private boolean isCheck;
-    @NotNull
-    private String rentOrSell;
+    private boolean isCheck; // false for 未审核, true for 已审核.
+
     private String rentPrice;
     private String sellPrice;
 
     private String uploadTime;
 
     @ManyToOne()
-    @JoinColumn(name = "owner")
-    private User user;
-
-    private String detail;
+    @JoinColumn(name = "owner_id")
+    private User user;  //发布人
 
 }
