@@ -8,8 +8,6 @@ import cn.ning.ysestate.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import sun.reflect.annotation.ExceptionProxy;
-import sun.util.calendar.BaseCalendar;
 
 import java.security.Principal;
 import java.text.SimpleDateFormat;
@@ -17,6 +15,7 @@ import java.util.Date;
 import java.util.Map;
 
 @Controller
+@RequestMapping(value = "/owner")
 public class OwnerController {
 
     @Autowired
@@ -30,10 +29,17 @@ public class OwnerController {
         return "publish";
     }
 
+
+    /***
+     * 上传 houseinfo
+     * @param map a form from /publish
+     * @param principal current user information from spring security
+     * @return new houseinfo saved
+     */
     @ResponseBody
     @PostMapping(value = "/publish")
-    public String postPublish(@RequestParam Map<String, String> map, Principal principal){
-
+    public String postPublish(@RequestBody Map<String, String> map, Principal principal){
+                            //当用form提交时用RequestPrarm 用ajax提交时用RequestBody
         try {
 
             HouseInfo houseInfo = new HouseInfo();
@@ -64,5 +70,27 @@ public class OwnerController {
     }
 
 
+    /***
+     * 找到当前用户提交的houseinfo
+     * @return a list of houseinfo which current user submit
+     */
+    @GetMapping(value = "/house")
+    @ResponseBody
+    public String getHouse(Principal principal){
+        return houseService.findByUser(userService.findByUsername(principal.getName()))
+    }
+
+
+    /***
+     * 删除houseinfo
+     * @param map house title
+     * @return delete successed
+     */
+    @DeleteMapping(value = "/house")
+    @ResponseBody
+    public String deleteHouse(@RequestBody Map<String, String> map){
+        houseService.deleteByTitle(map.get("title"));
+        return "删除成功";
+    }
 
 }

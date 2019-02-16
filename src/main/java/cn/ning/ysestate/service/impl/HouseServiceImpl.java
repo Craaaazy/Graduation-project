@@ -20,8 +20,8 @@ public class HouseServiceImpl implements HouseService {
     }
 
     @Override
-    public void deleteById(String id) {
-        houseReprository.deleteById(id);
+    public void deleteByTitle(String title) {
+        houseReprository.deleteByTitle(title);
     }
 
     @Override
@@ -30,7 +30,12 @@ public class HouseServiceImpl implements HouseService {
     }
 
     @Override
-    public HouseInfo findByUser(User user) {
+    public List<HouseInfo> findByUser(User user) {
         return houseReprository.findByUser(user);
+    }
+
+    @Override
+    public HouseInfo findByTitle(String title) {
+        return houseReprository.findByTitle(title);
     }
 }

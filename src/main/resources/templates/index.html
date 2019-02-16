@@ -20,9 +20,15 @@
 </head>
 <body>
 这是首页
+welcome [[${#httpServletRequest.remoteUser}]].
 
 <form th:action="@{/logout}">
-    <input type="submit">
+    <input type="submit" value="logout">
 </form>
+
+<form th:action="@{/publish}">
+    <input type="submit" value="publish">
+</form>
+
 </body>
 </html>

@@ -39,6 +39,13 @@ public class RegisController {
         return "/regis";
     }
 
+
+    /***
+     * 用户注册
+     * @param map user imformation from /regis
+     * @return user registed, waiting for email check
+     */
+
     @PostMapping(value = "")
     public String postRegisterUser(@RequestParam Map<String, String> map){
 
@@ -89,6 +96,11 @@ public class RegisController {
 
     }
 
+    /***
+     * 邮箱验证码验证
+     * @param validCode a validCode which can find the user waiting for check
+     * @return checked and to page /...
+     */
     @GetMapping(value = "/{validCode}")
     public String validate(@PathVariable String validCode){
         User user = userService.findByVaridateCode(validCode);

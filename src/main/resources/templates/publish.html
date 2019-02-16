@@ -8,23 +8,23 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
           integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"/>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-            crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
             integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
             crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
-            integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
-            crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
 
     <script type="text/javascript" src="../static/js/publish.js" th:src="@{/js/publish.js}"></script>
+
 
 </head>
 <body>
 
     <div class="container" style="width: 500px;">
-        <form th:action="@{/publish}" method="POST">
+        <form>
             <div class="form-group row">
                 <label for="title" class="col-sm-2 col-form-label">title</label>
                 <div class="col-sm-10">
@@ -47,7 +47,7 @@
             </div>
 
             <div class="row">
-                <select class="custom-select custom-select-lg mb-3 mr-2 col-3" name="zone">
+                <select class="custom-select custom-select-lg mb-3 mr-2 col-3" id="zone" name="zone">
                     <option selected disabled>请选择地址</option>
                     <option value="黄石港区">黄石港区</option>
                     <option value="西塞山区">西塞山区</option>
@@ -55,15 +55,19 @@
                     <option value="铁山区">铁山区</option>
                 </select>
 
-                <input class="form-control mb-3 col" placeholder="详细地址" name="locate">
+                <input class="form-control mb-3 col" placeholder="详细地址" id="locate" name="locate">
             </div>
 
             <div class="row">
-                <textarea class="form-control" name="detail" rows="5" style="min-width: 90%; resize: none;" placeholder="简介"></textarea>
+                <textarea class="form-control" name="detail" id="detail" rows="5" style="min-width: 90%; resize: none;" placeholder="简介"></textarea>
             </div>
 
             <div class="row">
-                <input type="submit" class="btn btn-primary" value="submit"/>
+                <input type="file" id="file" name="file">
+            </div>
+
+            <div class="row">
+                <input type="submit" id="publish_btn" class="btn btn-primary" value="submit"/>
             </div>
 
         </form>

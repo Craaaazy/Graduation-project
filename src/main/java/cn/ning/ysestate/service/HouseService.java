@@ -7,7 +7,9 @@ import java.util.List;
 
 public interface HouseService {
     HouseInfo save(HouseInfo houseInfo);
-    void deleteById(String id);
+    void deleteByTitle(String title);
     List<HouseInfo> findAll();
-    HouseInfo findByUser(User user);
+    List<HouseInfo> findByUser(User user);
+    HouseInfo findByTitle(String title);
+
 }
