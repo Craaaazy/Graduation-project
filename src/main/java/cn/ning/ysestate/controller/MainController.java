@@ -7,11 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.security.Principal;
 
 @Controller
 public class MainController {
+
     @Autowired
     UserService userService;
     @Autowired
@@ -20,19 +21,19 @@ public class MainController {
     HouseService houseService;
 
     @GetMapping("/index")
-    public String getIndex(Principal principal){
-        System.out.println(principal.getName());
+    public String getIndex(){
         return "index";
     }
 
     @GetMapping("/login")
     public String getLogin(){
-        return "/login";
+        return "/auth_login";
     }
 
     @PostMapping(value = "/login")
     public String logined(){
         return "/index";
     }
+
 
 }

@@ -1,4 +1,4 @@
-$(function () {
+$(document).ready(function () {
     $('.sr_btn').on('click', function (event) {
 
         if($(this).get(0).innerHTML == "sell"){
@@ -6,8 +6,6 @@ $(function () {
         }else {
             var obj = $('#rent')
         }
-
-
 
         if(obj.attr("disabled")){
             obj.removeAttr("disabled");
@@ -17,7 +15,6 @@ $(function () {
         }
 
     })
-
 
     $('#publish_btn').on('click', function (event) {
         event.preventDefault();
@@ -31,25 +28,25 @@ $(function () {
         data.detail = $('#detail').val();
 
         $.ajax({
-            url:'/publish',
+            url:'/owner/publish',
             type:'POST',
             contentType: 'application/json',
-            dataType:'json',
+            // dataType:'json',
             data:JSON.stringify(data),
 
             success:function (res) {
-                alert('success');
-                console.log(res);
+                console.log("success");
             },
             error:function (res) {
-                console.log('出错');
+                console.log("error");
             }
 
         });
 
         return false;
 
-    })
+    });
 
 })
+
 

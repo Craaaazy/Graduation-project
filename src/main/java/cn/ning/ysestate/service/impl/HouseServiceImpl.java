@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class HouseServiceImpl implements HouseService {
@@ -17,11 +18,6 @@ public class HouseServiceImpl implements HouseService {
     @Override
     public HouseInfo save(HouseInfo houseInfo) {
         return houseReprository.save(houseInfo);
-    }
-
-    @Override
-    public void deleteByTitle(String title) {
-        houseReprository.deleteByTitle(title);
     }
 
     @Override
@@ -35,7 +31,13 @@ public class HouseServiceImpl implements HouseService {
     }
 
     @Override
-    public HouseInfo findByTitle(String title) {
-        return houseReprository.findByTitle(title);
+    public Optional<HouseInfo> findById(String id) {
+        return houseReprository.findById(id);
     }
+
+    @Override
+    public void deleteById(String id) {
+        houseReprository.deleteById(id);
+    }
+
 }

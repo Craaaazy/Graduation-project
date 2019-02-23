@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
+
 
 @Controller
 @RequestMapping(value = "/owner")
@@ -29,7 +31,6 @@ public class OwnerController {
         return "publish";
     }
 
-
     /***
      * 上传 houseinfo
      * @param map a form from /publish
@@ -40,15 +41,16 @@ public class OwnerController {
     @PostMapping(value = "/publish")
     public String postPublish(@RequestBody Map<String, String> map, Principal principal){
                             //当用form提交时用RequestPrarm 用ajax提交时用RequestBody
+        HouseInfo houseInfo = new HouseInfo();
+
         try {
 
-            HouseInfo houseInfo = new HouseInfo();
             houseInfo.setCheck(false);
             houseInfo.setDetail(map.get("detail"));
             houseInfo.setLocate(map.get("locate"));
             houseInfo.setTitle(map.get("title"));
-            houseInfo.setRentPrice(map.get("rentPrice"));
-            houseInfo.setSellPrice(map.get("sellPrice"));
+            houseInfo.setRentPrice(map.get("rent"));
+            houseInfo.setSellPrice(map.get("sell"));
             houseInfo.setZone(map.get("zone"));
 
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -57,16 +59,21 @@ public class OwnerController {
             User user = userService.findByUsername(principal.getName());
 
             houseInfo.setUser(user);
-
-            houseInfo.setHouse_pic("xxxxxx");  //上传图片  先搁置
-
             houseService.save(houseInfo);
-            return "上传成功，等待审核...";
+
+            return "SUCCESS";
+
         }catch (Exception e){
             e.printStackTrace();
-            return "an error occured...";
+            return "ERROR";
         }
 
+    }
+
+    @PostMapping("/test")
+    @ResponseBody
+    public String test(){
+        return "dd";
     }
 
 
@@ -76,8 +83,8 @@ public class OwnerController {
      */
     @GetMapping(value = "/house")
     @ResponseBody
-    public String getHouse(Principal principal){
-        return houseService.findByUser(userService.findByUsername(principal.getName()))
+    public List<HouseInfo> getHouse(Principal principal){
+        return houseService.findByUser(userService.findByUsername(principal.getName()));
     }
 
 
@@ -89,7 +96,7 @@ public class OwnerController {
     @DeleteMapping(value = "/house")
     @ResponseBody
     public String deleteHouse(@RequestBody Map<String, String> map){
-        houseService.deleteByTitle(map.get("title"));
+        houseService.deleteById(map.get("id"));
         return "删除成功";
     }
 

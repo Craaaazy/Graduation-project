@@ -4,4 +4,5 @@ import cn.ning.ysestate.model.Role;
 
 public interface RoleService {
     Role findByName(String rolename);
+    void save(Role role);
 }
