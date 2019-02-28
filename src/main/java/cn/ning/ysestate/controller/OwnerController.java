@@ -28,7 +28,7 @@ public class OwnerController {
 
     @GetMapping(value = "/publish")
     public String getPublish(){
-        return "publish";
+        return "forms_regular";
     }
 
     /***
@@ -55,13 +55,18 @@ public class OwnerController {
 
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             houseInfo.setUploadTime(df.format(new Date()));
-
             User user = userService.findByUsername(principal.getName());
+            if(user!=null){
+                houseInfo.setUser(user);
+                houseService.save(houseInfo);
 
-            houseInfo.setUser(user);
-            houseService.save(houseInfo);
+                return "SUCCESS";
+            }else {
+                return "未登录";
+            }
 
-            return "SUCCESS";
+
+
 
         }catch (Exception e){
             e.printStackTrace();

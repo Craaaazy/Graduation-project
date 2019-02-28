@@ -1,29 +1,12 @@
 $(document).ready(function () {
-    $('.sr_btn').on('click', function (event) {
-
-        if($(this).get(0).innerHTML == "sell"){
-            var obj = $('#sell');
-        }else {
-            var obj = $('#rent')
-        }
-
-        if(obj.attr("disabled")){
-            obj.removeAttr("disabled");
-        }else{
-            obj.attr("disabled", "true");
-            obj.val('');
-        }
-
-    })
-
     $('#publish_btn').on('click', function (event) {
         event.preventDefault();
         var data = new Object();
 
-        data.title = $('#title').val();
+        data.title = $('#house_title').val();
         data.locate = $('#locate').val();
-        data.rent = $('#rent').val();
-        data.sell = $('#sell').val();
+        data.rent = $('#rentPrice').val();
+        data.sell = $('#sellPrice').val();
         data.zone = $('#zone').val();
         data.detail = $('#detail').val();
 
@@ -35,10 +18,15 @@ $(document).ready(function () {
             data:JSON.stringify(data),
 
             success:function (res) {
-                console.log("success");
+                $('#submit_result').text("上传成功");
+                $('#submit_result').css('color', 'green');
+                $('#publish_btn').attr("disabled","disabled");
+                console.log(res);
             },
             error:function (res) {
-                console.log("error");
+                $('#submit_result').text("Upload failed, " + res);
+                $('#submit_result').css('color', 'red');
+                console.log(res);
             }
 
         });
@@ -46,7 +34,6 @@ $(document).ready(function () {
         return false;
 
     });
-
 })
 
 

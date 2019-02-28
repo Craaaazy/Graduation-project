@@ -5,6 +5,8 @@ import cn.ning.ysestate.model.User;
 import cn.ning.ysestate.repository.HouseReprository;
 import cn.ning.ysestate.service.HouseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -38,6 +40,11 @@ public class HouseServiceImpl implements HouseService {
     @Override
     public void deleteById(String id) {
         houseReprository.deleteById(id);
+    }
+
+    @Override
+    public Page<HouseInfo> findAll(Pageable pageable) {
+        return houseReprository.findAll(pageable);
     }
 
 }

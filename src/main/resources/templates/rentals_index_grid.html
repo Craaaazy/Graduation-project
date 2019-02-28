@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Admin Dashboard HTML Template Frontend</title>
+    <meta charset="utf-8">
+    <meta content="ie=edge" http-equiv="x-ua-compatible">
+    <meta content="template language" name="keywords">
+    <meta content="Tamerlan Soziev" name="author">
+    <meta content="Admin dashboard html template" name="description">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link th:href="@{/favicon.png}" href="../static/favicon.png" rel="shortcut icon">
+    <link th:href="@{/app-touch-icon.png}" href="../static/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500" rel="stylesheet" type="text/css">
+    <link th:href="@{/bower_components/slick-carousel/slick/slick.css}" href="../static/bower_components/slick-carousel/slick/slick.css" rel="stylesheet">
+    <link th:href="@{/bower_components/ion.rangeSlider/css/ion.rangeSlider.css}" href="../static/bower_components/ion.rangeSlider/css/ion.rangeSlider.css" rel="stylesheet">
+    <link th:href="@{/bower_components/select2/dist/css/select2.min.css}" href="../static/bower_components/select2/dist/css/select2.min.css" rel="stylesheet">
+    <link th:href="@{/css/main.css?version=4.4.0}" href="../static/css/main.css?version=4.4.0" rel="stylesheet">
+
+  </head>
+  <body class="white rentals-wrapper full-screen">
+    <div class="all-wrapper rentals">
+      <!--------------------
+      START - Top Bar
+      -------------------->
+      <div class="top-bar-rentals">
+        <div class="logo-w">
+          <a class="logo" href="index.html">
+            <div class="logo-element"></div>
+            <div class="logo-label">
+              Property
+            </div>
+          </a>
+          <div class="filters-toggler">
+            <i class="os-icon os-icon-hamburger-menu-1"></i>
+          </div>
+        </div>
+        <div class="filters">
+          <div class="filters-header">
+            <h4>
+              Search By
+            </h4>
+          </div>
+          <form class="form-inline">
+            <div class="filter-w">
+              <div class="filter-body">
+                <div class="form-group">
+                  <label for="">Zip Code</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <i class="os-icon os-icon-ui-74"></i>
+                      </div>
+                    </div>
+                    <input class="form-control zip-width" placeholder="Zip Code" type="text" value="11234">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="filter-w">
+              <div class="filter-body">
+                <div class="form-group">
+                  <label for=""> Dates</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <i class="os-icon os-icon-ui-83"></i>
+                      </div>
+                    </div>
+                    <input class="form-control date-range-picker" type="text" value="">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="buttons-w">
+              <a class="btn btn-upper btn-primary" href="#"><i class="os-icon os-icon-ui-37"></i><span>Search</span></a>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!--------------------
+      END - Top bar
+      -------------------->
+
+      <!--------------------
+      START - Rentals Content
+      -------------------->
+      <div class="rentals-list-w">
+        <!--------------------
+        START - Property Index Filters
+        -------------------->
+        <div class="filter-side">
+          <div class="filters-header">
+            <h4>
+              Filter
+            </h4>
+            <div class="reset-filters">
+              <i class="os-icon-close os-icon"></i><span>Reset Filters</span>
+            </div>
+          </div>
+          <div class="filter-w">
+            <div class="filter-toggle">
+              <i class="os-icon-minus os-icon"></i>
+            </div>
+            <h6 class="filter-header">
+              Listing Type
+            </h6>
+            <div class="filter-body">
+              <div class="toggled-buttons">
+                <a class="btn btn-toggled on" href="#">Show All</a><a class="btn btn-toggled off" href="#">For Rent</a><a class="btn btn-toggled off" href="#">For Sale</a>
+              </div>
+            </div>
+          </div>
+          <div class="filter-w">
+            <div class="filter-toggle">
+              <i class="os-icon-minus os-icon"></i>
+            </div>
+            <h6 class="filter-header">
+              Price Range
+            </h6>
+            <div class="filter-body">
+              <input class="ion-range-slider" type="text">
+            </div>
+          </div>
+          <div class="filter-w">
+            <div class="filter-toggle">
+              <i class="os-icon-minus os-icon"></i>
+            </div>
+            <h6 class="filter-header">
+              评价
+            </h6>
+            <div class="filter-body">
+              <div class="toggled-buttons solid">
+                <a class="btn btn-toggled off" href="#">1+</a><a class="btn btn-toggled off" href="#">2+</a><a class="btn btn-toggled off" href="#">3+</a><a class="btn btn-toggled on" href="#">4+</a><a class="btn btn-toggled off" href="#">5+</a>
+              </div>
+            </div>
+          </div>
+          <div class="filter-w">
+            <div class="filter-toggle">
+              <i class="os-icon-minus os-icon"></i>
+            </div>
+            <h6 class="filter-header">
+              Zone
+            </h6>
+            <div class="filter-body">
+              <select class="select2" multiple="true" name="">
+                <option>
+                 西塞山区
+                </option>
+                <option>
+                  黄石港区
+                </option>
+                <option selected="true">
+                  下陆区
+                </option>
+                <option>
+                  铁山区
+                </option>
+              </select>
+            </div>
+          </div>
+
+        </div>
+        <!--------------------
+        END - Property Index Filters
+        -------------------->
+        <div class="rentals-list">
+          <div class="list-controls">
+            <div class="list-info">
+              <span th:text="${page.totalElements}"></span> Properties found in YS
+            </div>
+            <div class="list-order">
+              <label for="">Order By:</label><select>
+                <option>
+                  Relevance
+                </option>
+                <option>
+                  Date
+                </option>
+                <option>
+                  Price
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="property-items as-grid">
+            <!--------------------
+            单个houseinfo  缺图片 缺星级 展示
+            -------------------->
+            <div class="property-item" th:each="house : ${page.content}">
+              <a class="item-media-w" href="rentals_single.html" th:href="@{/house_detail/}+${house.id}">
+                <div class="item-media" style="background-image: url(img/property2.jpg)"></div>
+              </a>
+              <div class="item-info">
+                <div class="item-features">
+                  <div class="feature" th:text="${house.zone}">
+                    5 Bedrooms
+                  </div>
+                  <!--<div class="feature">-->
+                    <!--Entire Home-->
+                  <!--</div>-->
+                </div>
+                <h3 class="item-title">
+                  <a href="rentals_single.html" th:text="${house.title}">Perfect Located 2BR Aspen Condo</a>
+                </h3>
+                <div class="item-reviews">
+                  <div class="reviews-stars">
+                    <select class="item-star-rating">
+                      <option value="1">
+                        1
+                      </option>
+                      <option value="2">
+                        2
+                      </option>
+                      <option value="3">
+                        3
+                      </option>
+                      <option selected="yes" value="4">
+                        4
+                      </option>
+                      <option value="5">
+                        5
+                      </option>
+                    </select>
+                  </div>
+                  <div class="reviews-count" th:text="${house.click_Num} + ' ' + Reviews">
+                    ? Reviews
+                  </div>
+                </div>
+                <div class="item-price-buttons">
+                  <div class="item-price">
+                    <strong th:text="'$' + ${house.sellPrice}">$350</strong><span>/</span>
+                  </div>
+                  <div class="item-buttons">
+                    <a class="btn btn-outline-primary" th:href="@{/house_detail/}+${house.id}" href="rentals_single.html"><span>Details</span><i class="os-icon os-icon-arrow-2-right"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--------------------
+            END - 单个houseinfo
+            -------------------->
+          </div>
+          <!-- 分页 ok-->
+          <div class="pagination-w">
+            <div class="pagination-info">
+              Showing 20-40 Properties found in Brooklyn, NY
+            </div>
+            <div class="pagination-links">
+              <ul class="pagination">
+                <li class="page-item">
+                  <a class="page-link" th:if="${not page.isFirst()}" th:href="@{/houselist(start=${page.number-1})}"> Previous</a>
+                </li>
+                <!--<li class="page-item active">-->
+                  <!--<a class="page-link" href="#"> 1</a>-->
+                <!--</li>-->
+                <li class="page-item" th:each="i : ${#numbers.sequence(1, page.totalPages)}"
+                    th:classappend="${(page.number + 1) eq i} ? 'active' : ''" >
+                  <a class="page-link" th:attr="pageIndex=${i} - 1" th:href="@{/houselist(start=${i-1})}">
+                    <span th:text="${i}"></span>
+                  </a>
+                </li>
+
+                <li class="page-item">
+                  <a class="page-link" th:if="${not page.isLast()}" th:href="@{/houselist(start=${page.number+1})}"> Next</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- 分页 ok-->
+        </div>
+      </div>
+
+
+      <!--------------------
+      END - Rentals Content
+      -------------------->
+
+      <!--------------------
+      START - Footer
+      -------------------->
+      <div class="call-to-action">
+        <h3 class="cta-header">
+          Want to give it a try now?
+        </h3>
+        <div class="cta-desc">
+          Purchase it now and start building your next business venture using this template
+        </div>
+        <div class="cta-btn">
+          <a class="btn btn-primary btn-lg btn-rounded" href="https://themeforest.net/item/light-admin-clean-bootstrap-dashboard-html-template/19760124?ref=Osetin" target="_blank"><span>Purchase</span><i class="os-icon os-icon-arrow-right4"></i><i class="os-icon os-icon-arrow-right4"></i></a>
+        </div>
+      </div>
+      <div class="footer-w">
+        <div class="fade3"></div>
+        <div class="os-container">
+          <div class="footer-i">
+            <div class="row">
+              <div class="col-sm-7 col-lg-4 b-r padded">
+                <div class="logo-element"></div>
+                <h3 class="heading-big">
+                  Light Admin
+                </h3>
+                <h6 class="heading-small">
+                  HTML Template
+                </h6>
+                <p>
+                  We love great UI and smooth user experience, this is why we’ve spent so much time on making this Bootstrap template stand our of the rest
+                </p>
+              </div>
+              <div class="col-sm-5 col-lg-8">
+                <div class="row">
+                  <div class="col-lg-4 b-r padded">
+                    <h6 class="heading-small">
+                      Locations
+                    </h6>
+                    <p>
+                      456 Hollywood blvd, <br/>Los Angeles CA, 95543
+                    </p>
+                  </div>
+                  <div class="col-lg-4 b-r padded">
+                    <h6 class="heading-small">
+                      Phone Numbers
+                    </h6>
+                    <ul>
+                      <li>
+                        888.345.6362
+                      </li>
+                      <li>
+                        800.244.6272
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-lg-4 padded">
+                    <h6 class="heading-small">
+                      Social Links
+                    </h6>
+                    <ul class="social-links">
+                      <li>
+                        <a href="#"><i class="os-icon os-icon-facebook"></i></a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="os-icon os-icon-twitter"></i></a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="deep-footer">
+            Use of this site constitutes acceptance of our <a href="#">User Agreement</a> and <a href="#">Privacy Policy</a>. &copy; 2017 Pinsupreme.com All rights reserved.                    
+          </div>
+        </div>
+      </div>
+      <!--------------------
+      END - Footer
+      -------------------->
+    </div>
+    <div class="display-type"></div>
+  </body>
+
+  <script th:src="@{/bower_components/jquery/dist/jquery.min.js}" src="../static/bower_components/jquery/dist/jquery.min.js"></script>
+  <script th:src="@{/bower_components/popper.js/dist/umd/popper.min.js}" src="../static/bower_components/popper.js/dist/umd/popper.min.js"></script>
+  <script th:src="@{/bower_components/moment/moment.js}" src="../static/bower_components/moment/moment.js"></script>
+  <script th:src="@{/bower_components/chart.js/dist/Chart.min.js}" src="../static/bower_components/chart.js/dist/Chart.min.js"></script>
+  <script th:src="@{/bower_components/select2/dist/js/select2.full.min.js}" src="../static/bower_components/select2/dist/js/select2.full.min.js"></script>
+  <script th:src="@{/bower_components/jquery-bar-rating/dist/jquery.barrating.min.js}" src="../static/bower_components/jquery-bar-rating/dist/jquery.barrating.min.js"></script>
+  <script th:src="@{/bower_components/ckeditor/ckeditor.js}" src="../static/bower_components/ckeditor/ckeditor.js"></script>
+  <script th:src="@{/bower_components/bootstrap-validator/dist/validator.min.js}" src="../static/bower_components/bootstrap-validator/dist/validator.min.js"></script>
+  <script th:src="@{/bower_components/bootstrap-daterangepicker/daterangepicker.js}" src="../static/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+  <script th:src="@{/bower_components/ion.rangeSlider/js/ion.rangeSlider.min.js}" src="../static/bower_components/ion.rangeSlider/js/ion.rangeSlider.min.js"></script>
+  <script th:src="@{/bower_components/dropzone/dist/dropzone.js}" src="../static/bower_components/dropzone/dist/dropzone.js"></script>
+  <script th:src="@{/bower_components/editable-table/mindmup-editabletable.js}" src="../static/bower_components/editable-table/mindmup-editabletable.js"></script>
+  <script th:src="@{/bower_components/datatables.net/js/jquery.dataTables.min.js}" src="../static/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+  <script th:src="@{/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js}" src="../static/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+  <script th:src="@{/bower_components/fullcalendar/dist/fullcalendar.min.js}" src="../static/bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
+  <script th:src="@{/bower_components/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js}" src="../static/bower_components/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js"></script>
+  <script th:src="@{/bower_components/tether/dist/js/tether.min.js}" src="../static/bower_components/tether/dist/js/tether.min.js"></script>
+  <script th:src="@{/bower_components/slick-carousel/slick/slick.min.js}" src="../static/bower_components/slick-carousel/slick/slick.min.js"></script>
+  <script th:src="@{/bower_components/bootstrap/js/dist/util.js}" src="../static/bower_components/bootstrap/js/dist/util.js"></script>
+  <script th:src="@{/bower_components/bootstrap/js/dist/alert.js}" src="../static/bower_components/bootstrap/js/dist/alert.js"></script>
+  <script th:src="@{/bower_components/bootstrap/js/dist/button.js}" src="../static/bower_components/bootstrap/js/dist/button.js"></script>
+  <script th:src="@{/bower_components/bootstrap/js/dist/carousel.js}" src="../static/bower_components/bootstrap/js/dist/carousel.js"></script>
+  <script th:src="@{/bower_components/bootstrap/js/dist/collapse.js}" src="../static/bower_components/bootstrap/js/dist/collapse.js"></script>
+  <script th:src="@{/bower_components/bootstrap/js/dist/dropdown.js}" src="../static/bower_components/bootstrap/js/dist/dropdown.js"></script>
+  <script th:src="@{/bower_components/bootstrap/js/dist/modal.js}" src="../static/bower_components/bootstrap/js/dist/modal.js"></script>
+  <script th:src="@{/bower_components/bootstrap/js/dist/tab.js}" src="../static/bower_components/bootstrap/js/dist/tab.js"></script>
+  <script th:src="@{/bower_components/bootstrap/js/dist/tooltip.js}" src="../static/bower_components/bootstrap/js/dist/tooltip.js"></script>
+  <script th:src="@{/bower_components/bootstrap/js/dist/popover.js}" src="../static/bower_components/bootstrap/js/dist/popover.js"></script>
+  <script th:src="@{/js/demo_customizer.js?version=4.4.0}" src="../static/js/demo_customizer.js?version=4.4.0"></script>
+  <script th:src="@{/js/main.js?version=4.4.0}" src="../static/js/main.js?version=4.4.0"></script>
+
+  <script th:src="@{/js/main_rentals.js?version=4.4.0}" src="../static/js/main_rentals.js?version=4.4.0"></script>
+
+</html>

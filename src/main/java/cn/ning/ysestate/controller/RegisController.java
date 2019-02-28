@@ -36,7 +36,7 @@ public class RegisController {
 
     @GetMapping(value = "")
     public String getRegisterUser(){
-        return "/regis";
+        return "/auth_register";
     }
 
 
@@ -107,7 +107,7 @@ public class RegisController {
         user.setActive(true);
         userService.save(user);
 
-        return "/validSuccess";
+        return "/emails_welcome";
     }
 
 }

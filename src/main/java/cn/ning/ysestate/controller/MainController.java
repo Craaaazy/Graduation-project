@@ -20,6 +20,11 @@ public class MainController {
     @Autowired
     HouseService houseService;
 
+//    @GetMapping("/product_index")
+//    public String getProductIndex(){
+//        return "rentals_index_grid";
+//    }
+
     @GetMapping("/index")
     public String getIndex(){
         return "index";
@@ -35,5 +40,9 @@ public class MainController {
         return "/index";
     }
 
+    @GetMapping(value = "/forms_regular")
+    public String regular(){
+        return "/forms_regular";
+    }
 
 }

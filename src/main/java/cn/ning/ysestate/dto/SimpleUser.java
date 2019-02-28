@@ -14,6 +14,7 @@ public class SimpleUser {
     private String username;
     private List<HouseInfo> houses;
     private Role role;
+    private String phone_num;
 
     public SimpleUser(@Email String email, List<HouseInfo> houses, Role role, String username) {
     }

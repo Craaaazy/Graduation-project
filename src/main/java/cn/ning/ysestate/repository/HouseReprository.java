@@ -2,6 +2,8 @@ package cn.ning.ysestate.repository;
 
 import cn.ning.ysestate.model.HouseInfo;
 import cn.ning.ysestate.model.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,4 +17,5 @@ public interface HouseReprository extends JpaRepository<HouseInfo, String> {
     List<HouseInfo> findByUser(User user);
     Optional<HouseInfo> findById(String id);
 
+    Page<HouseInfo> findAll(Pageable pageable);
 }

@@ -30,6 +30,7 @@ public class User {
     private String email;
     private Boolean active;
     private String varidateCode;
+    private String Phone_num;
 
     @ManyToOne()
     @JoinColumn(name = "role_id")
