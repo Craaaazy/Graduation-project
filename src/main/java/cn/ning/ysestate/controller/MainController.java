@@ -45,4 +45,9 @@ public class MainController {
         return "/forms_regular";
     }
 
+    @GetMapping(value = "/test")
+    public String getWait(){
+        return "/wait";
+    }
+
 }

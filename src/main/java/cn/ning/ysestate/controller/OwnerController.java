@@ -1,16 +1,19 @@
 package cn.ning.ysestate.controller;
 
 
+import cn.ning.ysestate.dto.HouseDto;
 import cn.ning.ysestate.model.HouseInfo;
 import cn.ning.ysestate.model.User;
 import cn.ning.ysestate.service.HouseService;
 import cn.ning.ysestate.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -103,6 +106,39 @@ public class OwnerController {
     public String deleteHouse(@RequestBody Map<String, String> map){
         houseService.deleteById(map.get("id"));
         return "删除成功";
+    }
+
+
+    @GetMapping(value = "/myHouse")
+    public String getMyHouses(Principal principal, ModelMap modelMap){
+        List<HouseInfo> houseInfo = houseService.findByUser(userService.findByUsername(principal.getName()));
+        List<HouseDto> houses = new ArrayList<>();
+        HouseDto house;
+
+        for (int i = 0; i < houseInfo.size(); i++) {
+            house = new HouseDto();
+            house.setZone(houseInfo.get(i).getZone());
+            house.setUploadTime(houseInfo.get(i).getUploadTime());
+            house.setTitle(houseInfo.get(i).getTitle());
+            house.setCheck(houseInfo.get(i).isCheck());
+            house.setId(houseInfo.get(i).getId());
+            house.setSellPrice(houseInfo.get(i).getSellPrice());
+            house.setRentPrice(houseInfo.get(i).getRentPrice());
+            house.setClick_Num(houseInfo.get(i).getClick_Num());
+
+            houses.add(house);
+        }
+
+        modelMap.addAttribute("houses", houses);
+        return "tables_regular";
+    }
+
+
+    @DeleteMapping(value = "/myHouse/{id}")
+    @ResponseBody
+    public String deleteHouse(@PathVariable String id){
+        houseService.deleteById(id);
+        return "delete success";
     }
 
 }
