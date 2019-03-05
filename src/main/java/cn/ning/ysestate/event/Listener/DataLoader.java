@@ -40,6 +40,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         user.setActive(true);
         user.setRole(role1);
         user.setEmail("382712256@qq.com");
+        user.setPhone_num("12345679");
 
         userService.save(user);
 

@@ -23,5 +23,8 @@ public class HouseDto {
     private int click_Num;
     private String comment_Star;
     private String userId;
+    private String owner_name;
+    private String owner_phone;
+    private String owner_email;
 
 }

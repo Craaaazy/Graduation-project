@@ -28,7 +28,7 @@
           <a class="logo" href="index.html">
             <div class="logo-element"></div>
             <div class="logo-label">
-              Property
+              YS-Estate
             </div>
           </a>
           <div class="filters-toggler">
@@ -36,46 +36,24 @@
           </div>
         </div>
         <div class="filters">
-          <div class="filters-header">
-            <h4>
-              Search By
-            </h4>
-          </div>
           <form class="form-inline">
             <div class="filter-w">
               <div class="filter-body">
                 <div class="form-group">
-                  <label for="">Zip Code</label>
                   <div class="input-group">
-                    <div class="input-group-prepend">
-                      <div class="input-group-text">
-                        <i class="os-icon os-icon-ui-74"></i>
-                      </div>
-                    </div>
-                    <input class="form-control zip-width" placeholder="Zip Code" type="text" value="11234">
+                    <input class="form-control " disabled type="text" value="     黄石房地产信息网">
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="filter-w">
-              <div class="filter-body">
-                <div class="form-group">
-                  <label for=""> Dates</label>
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <div class="input-group-text">
-                        <i class="os-icon os-icon-ui-83"></i>
-                      </div>
-                    </div>
-                    <input class="form-control date-range-picker" type="text" value="">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="buttons-w">
-              <a class="btn btn-upper btn-primary" href="#"><i class="os-icon os-icon-ui-37"></i><span>Search</span></a>
             </div>
           </form>
+          <div class="buttons-w" th:unless="${#httpServletRequest.remoteUser}">
+            <a th:href="@{/login}" class="btn btn-upper btn-primary" href="#"><i class="os-icon os-icon-ui-74"></i><span>登录</span></a>
+            <a th:href="@{/regis}" class="btn btn-upper btn-primary" href="#"><i class="os-icon os-icon-ui-74"></i><span>注册</span></a>
+          </div>
+          <div class="button-w" th:if="${#httpServletRequest.remoteUser}">
+            <span style="color: whitesmoke">Welcome! </span> <a th:href="@{/index}" style="color: whitesmoke" th:text="${#httpServletRequest.remoteUser}"></a>
+          </div>
         </div>
       </div>
       <!--------------------
@@ -279,79 +257,7 @@
       <!--------------------
       START - Footer
       -------------------->
-      <div class="call-to-action">
-        <h3 class="cta-header">
-          Want to give it a try now?
-        </h3>
-        <div class="cta-desc">
-          Purchase it now and start building your next business venture using this template
-        </div>
-        <div class="cta-btn">
-          <a class="btn btn-primary btn-lg btn-rounded" href="https://themeforest.net/item/light-admin-clean-bootstrap-dashboard-html-template/19760124?ref=Osetin" target="_blank"><span>Purchase</span><i class="os-icon os-icon-arrow-right4"></i><i class="os-icon os-icon-arrow-right4"></i></a>
-        </div>
-      </div>
-      <div class="footer-w">
-        <div class="fade3"></div>
-        <div class="os-container">
-          <div class="footer-i">
-            <div class="row">
-              <div class="col-sm-7 col-lg-4 b-r padded">
-                <div class="logo-element"></div>
-                <h3 class="heading-big">
-                  Light Admin
-                </h3>
-                <h6 class="heading-small">
-                  HTML Template
-                </h6>
-                <p>
-                  We love great UI and smooth user experience, this is why we’ve spent so much time on making this Bootstrap template stand our of the rest
-                </p>
-              </div>
-              <div class="col-sm-5 col-lg-8">
-                <div class="row">
-                  <div class="col-lg-4 b-r padded">
-                    <h6 class="heading-small">
-                      Locations
-                    </h6>
-                    <p>
-                      456 Hollywood blvd, <br/>Los Angeles CA, 95543
-                    </p>
-                  </div>
-                  <div class="col-lg-4 b-r padded">
-                    <h6 class="heading-small">
-                      Phone Numbers
-                    </h6>
-                    <ul>
-                      <li>
-                        888.345.6362
-                      </li>
-                      <li>
-                        800.244.6272
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="col-lg-4 padded">
-                    <h6 class="heading-small">
-                      Social Links
-                    </h6>
-                    <ul class="social-links">
-                      <li>
-                        <a href="#"><i class="os-icon os-icon-facebook"></i></a>
-                      </li>
-                      <li>
-                        <a href="#"><i class="os-icon os-icon-twitter"></i></a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="deep-footer">
-            Use of this site constitutes acceptance of our <a href="#">User Agreement</a> and <a href="#">Privacy Policy</a>. &copy; 2017 Pinsupreme.com All rights reserved.                    
-          </div>
-        </div>
-      </div>
+      <div th:replace="fragments/footer :: default"></div>
       <!--------------------
       END - Footer
       -------------------->

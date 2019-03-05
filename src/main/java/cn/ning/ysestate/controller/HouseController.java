@@ -1,6 +1,7 @@
 package cn.ning.ysestate.controller;
 
 import cn.ning.ysestate.dto.HouseDto;
+import cn.ning.ysestate.dto.SimpleUser;
 import cn.ning.ysestate.model.HouseInfo;
 import cn.ning.ysestate.service.HouseService;
 import cn.ning.ysestate.service.UserService;
@@ -46,9 +47,12 @@ public class HouseController {
 //        System.out.println(page.getTotalPages());
 //        System.out.println(page.isFirst());
 //        System.out.println(page.isLast());
+
         ModelAndView mav = new ModelAndView("rentals_index_grid");
         mav.addObject("page", page);
+
         return mav;
+
     }
 
     @GetMapping(value = "/house_detail/{house_id}")
@@ -72,6 +76,9 @@ public class HouseController {
         houseDto.setHouse_pic(houseInfo.getHouse_pic());
         houseDto.setZone(houseInfo.getZone());
         houseDto.setCheck(houseInfo.isCheck());
+        houseDto.setOwner_name(houseInfo.getUser().getUsername());
+        houseDto.setOwner_phone(houseInfo.getUser().getPhone_num());
+        houseDto.setOwner_email(houseInfo.getUser().getEmail());
 
         modelMap.addAttribute("house", houseDto);
 

@@ -14,4 +14,5 @@ public class ValidateCodeUtil {
 
         return sb.toString().toLowerCase();
     }
+
 }

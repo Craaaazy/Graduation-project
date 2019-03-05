@@ -48,6 +48,7 @@
               <label class="form-check-label"><input class="form-check-input" type="checkbox">Remember Me</label>
             </div>
           </div>
+          <div th:if="${param.error}">用户名或密码错误。</div>
         </form>
       </div>
     </div>

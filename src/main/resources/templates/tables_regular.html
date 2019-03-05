@@ -94,7 +94,8 @@
                         <th>sellPrice</th>
                         <th>UploadTime</th>
                         <th class="text-center" style="width: 10%">Check</th>
-                        <th>Action</th>
+                        <th>Delete</th>
+                        <th>upload Picture</th>
                       </tr>
                       </thead>
                       <tfoot>
@@ -105,6 +106,7 @@
                         <th>UploadTime</th>
                         <th class="text-center">Check</th>
                         <th>Action</th>
+                        <th>upload Picture</th>
                       </tr>
                       </tfoot>
                       <tbody>
@@ -119,8 +121,10 @@
                           <div th:if="${not house.check}" class="status-pill yellow" data-title="WaitForCheck" data-toggle="tooltip"></div>
                         </td>
                         <td class="row-actions">
-                          <a th:href="@{/houselist/}+${house.id}" href="#"><i class="os-icon os-icon-ui-49"></i></a>
                           <a href="javascript:void(0)" onclick="onDelete(this)" class="danger"><i class="os-icon os-icon-ui-15"></i></a>
+                        </td>
+                        <td class="row-actions">
+                          <a th:href="@{/owner/uploadpic/}+${house.id}" href="#"><i class="os-icon os-icon-ui-49"></i></a>
                         </td>
                       </tr>
                     </table>

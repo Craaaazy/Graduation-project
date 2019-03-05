@@ -26,40 +26,22 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
     <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
 
-    <link th:href="@{/css/jquery-confirm.min.css}" href="../static/css/jquery-confirm.min.css" rel="stylesheet">
-    <link th:href="@{/css/jquery-confirm.less}" href="../static/css/jquery-confirm.less" rel="stylesheet">
 
 </head>
 <body>
-<button id="btn">test</button>
+<form th:action="@{/owner/fileupload}" method="post" enctype="multipart/form-data">
+    <input type="file" name="file" />
+    <button type="submit" value="上传"></button>
+</form>
 
 </body>
 
 <script>
     $(document).ready(function () {
-        $('#btn').on('click', function(event) {
-            $.confirm({
-                title: 'Encountered an error!',
-                content: 'Something went downhill, this may be serious',
-                type: 'red',
-                typeAnimated: true,
-                buttons: {
-                    tryAgain: {
-                        text: 'Try again',
-                        btnClass: 'btn-red',
-                        action: function(){
-                        }
-                    },
-                    close: function () {
-                    }
-                }
-            });
 
-        })
     });
 </script>
 
 
-<script th:src="@{/js/jquery-confirm.min.js}" src="../static/js/jquery-confirm.min.js"></script>
 
 </html>

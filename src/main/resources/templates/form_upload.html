@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>YS-Estate graduation-project</title>
+    <meta charset="utf-8">
+    <meta content="ie=edge" http-equiv="x-ua-compatible">
+    <meta content="template language" name="keywords">
+    <meta content="Tamerlan Soziev" name="author">
+    <meta content="Admin dashboard html template" name="description">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link th:href="@{/favicon.png}" href="../static/favicon.png" rel="shortcut icon">
+    <link th:href="@{/app-touch-icon.png}" href="../static/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500" rel="stylesheet" type="text/css">
+    <link th:href="@{/bower_components/select2/dist/css/select2.min.css}" href="../static/bower_components/select2/dist/css/select2.min.css" rel="stylesheet">
+    <link th:href="@{/bower_components/bootstrap-daterangepicker/daterangepicker.css}" href="../static/bower_components/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <link th:href="@{/bower_components/dropzone/dist/dropzone.css}" href="../static/bower_components/dropzone/dist/dropzone.css" rel="stylesheet">
+    <link th:href="@{/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css}" href="../static/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link th:href="@{/bower_components/fullcalendar/dist/fullcalendar.min.css}" href="../static/bower_components/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet">
+    <link th:href="@{/bower_components/perfect-scrollbar/css/perfect-scrollbar.min.css}" href="../static/bower_components/perfect-scrollbar/css/perfect-scrollbar.min.css" rel="stylesheet">
+    <link th:href="@{/bower_components/slick-carousel/slick/slick.css}" href="../static/bower_components/slick-carousel/slick/slick.css" rel="stylesheet">
+    <link th:href="@{/css/main.css?version=4.4.0}" href="../static/css/main.css?version=4.4.0" rel="stylesheet">
+
+</head>
+<body class="menu-position-side menu-side-left full-screen">
+<div class="all-wrapper solid-bg-all">
+
+    <!--seach相关-->
+    <div th:replace="fragments/header :: default"></div>
+    <!--seach相关-->
+
+
+    <div class="layout-w">
+        <!--------------------
+        START - Mobile Menu
+        -------------------->
+        <div th:replace="fragments/header :: mobile_menu"></div>
+        <!--------------------
+        END - Mobile Menu
+        -------------------->
+
+        <!--------------------
+        START - Main Menu
+        -------------------->
+        <div th:replace="fragments/side_menu :: sider"></div>
+        <!--------------------
+        END - Main Menu
+        -------------------->
+        <div class="content-w">
+            <!--------------------
+            START - Top Bar
+            -------------------->
+            <div th:replace="fragments/side_menu :: head_icon"></div>
+            <!--------------------
+            END - Top Bar
+            -------------------->
+            <!--------------------
+            START - Breadcrumbs
+            -------------------->
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="index.html">Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="index.html">Products</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <span>Upload</span>
+                </li>
+            </ul>
+            <!--------------------
+            END - Breadcrumbs
+            -------------------->
+
+            <!--main content-->
+            <div class="content-i">
+                <div class="content-box"><div class="row">
+                    <div class="col-lg-12">
+                        <div class="element-wrapper">
+                            <div class="element-box">
+                                <h5 class="form-header">
+                                    File Upload
+                                </h5>
+                                <div class="form-desc">
+                                    拖拽来上传图片
+                                </div>
+
+                                <form th:action="@{/owner/fileupload/} + ${id}" method="post" class="dropzone" id="my-awesome-dropzone" enctype="multipart/form-data">
+                                    <div class="dz-message">
+                                        <h4>Drop files here or click to upload.</h4><div class="text-muted">(请上传图片文件 jpg,png,jepg)</div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <!--main content-->
+
+        </div>
+    </div>
+    <div class="display-type"></div>
+</div>
+
+<script th:src="@{/bower_components/jquery/dist/jquery.min.js}" src="../static/bower_components/jquery/dist/jquery.min.js"></script>
+<script th:src="@{/bower_components/popper.js/dist/umd/popper.min.js}" src="../static/bower_components/popper.js/dist/umd/popper.min.js"></script>
+<script th:src="@{/bower_components/moment/moment.js}" src="../static/bower_components/moment/moment.js"></script>
+<script th:src="@{/bower_components/chart.js/dist/Chart.min.js}" src="../static/bower_components/chart.js/dist/Chart.min.js"></script>
+<script th:src="@{/bower_components/select2/dist/js/select2.full.min.js}" src="../static/bower_components/select2/dist/js/select2.full.min.js"></script>
+<script th:src="@{/bower_components/jquery-bar-rating/dist/jquery.barrating.min.js}" src="../static/bower_components/jquery-bar-rating/dist/jquery.barrating.min.js"></script>
+<script th:src="@{/bower_components/ckeditor/ckeditor.js}" src="../static/bower_components/ckeditor/ckeditor.js"></script>
+<script th:src="@{/bower_components/bootstrap-validator/dist/validator.min.js}" src="../static/bower_components/bootstrap-validator/dist/validator.min.js"></script>
+<script th:src="@{/bower_components/bootstrap-daterangepicker/daterangepicker.js}" src="../static/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script th:src="@{/bower_components/ion.rangeSlider/js/ion.rangeSlider.min.js}" src="../static/bower_components/ion.rangeSlider/js/ion.rangeSlider.min.js"></script>
+<script th:src="@{/bower_components/dropzone/dist/dropzone.js}" src="../static/bower_components/dropzone/dist/dropzone.js"></script>
+<script th:src="@{/bower_components/editable-table/mindmup-editabletable.js}" src="../static/bower_components/editable-table/mindmup-editabletable.js"></script>
+<script th:src="@{/bower_components/datatables.net/js/jquery.dataTables.min.js}" src="../static/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script th:src="@{/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js}" src="../static/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script th:src="@{/bower_components/fullcalendar/dist/fullcalendar.min.js}" src="../static/bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
+<script th:src="@{/bower_components/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js}" src="../static/bower_components/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js"></script>
+<script th:src="@{/bower_components/tether/dist/js/tether.min.js}" src="../static/bower_components/tether/dist/js/tether.min.js"></script>
+<script th:src="@{/bower_components/slick-carousel/slick/slick.min.js}" src="../static/bower_components/slick-carousel/slick/slick.min.js"></script>
+<script th:src="@{/bower_components/bootstrap/js/dist/util.js}" src="../static/bower_components/bootstrap/js/dist/util.js"></script>
+<script th:src="@{/bower_components/bootstrap/js/dist/alert.js}" src="../static/bower_components/bootstrap/js/dist/alert.js"></script>
+<script th:src="@{/bower_components/bootstrap/js/dist/button.js}" src="../static/bower_components/bootstrap/js/dist/button.js"></script>
+<script th:src="@{/bower_components/bootstrap/js/dist/carousel.js}" src="../static/bower_components/bootstrap/js/dist/carousel.js"></script>
+<script th:src="@{/bower_components/bootstrap/js/dist/collapse.js}" src="../static/bower_components/bootstrap/js/dist/collapse.js"></script>
+<script th:src="@{/bower_components/bootstrap/js/dist/dropdown.js}" src="../static/bower_components/bootstrap/js/dist/dropdown.js"></script>
+<script th:src="@{/bower_components/bootstrap/js/dist/modal.js}" src="../static/bower_components/bootstrap/js/dist/modal.js"></script>
+<script th:src="@{/bower_components/bootstrap/js/dist/tab.js}" src="../static/bower_components/bootstrap/js/dist/tab.js"></script>
+<script th:src="@{/bower_components/bootstrap/js/dist/tooltip.js}" src="../static/bower_components/bootstrap/js/dist/tooltip.js"></script>
+<script th:src="@{/bower_components/bootstrap/js/dist/popover.js}" src="../static/bower_components/bootstrap/js/dist/popover.js"></script>
+<script th:src="@{/js/demo_customizer.js?version=4.4.0}" src="../static/js/demo_customizer.js?version=4.4.0"></script>
+<script th:src="@{/js/main.js?version=4.4.0}" src="../static/js/main.js?version=4.4.0"></script>
+<script th:src="@{/js/main_rentals.js?version=4.4.0}" src="../static/js/main_rentals.js?version=4.4.0"></script>
+<script th:src="@{/js/publish.js}" src="../static/js/publish.js"></script>
+<script>
+    Dropzone.options.myAwesomeDropzone = {
+        paramName: "file", // The name that will be used to transfer the file
+        maxFilesize: 3, // MB
+        acceptedFiles: "image/jpeg,image/jpg,image/png"
+
+    };
+</script>
+</body>
+</html>
