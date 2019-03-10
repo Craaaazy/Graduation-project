@@ -25,7 +25,7 @@
 <div class="all-wrapper solid-bg-all">
 
     <!--seach相关-->
-    <div th:replace="fragments/header :: default"></div>
+    <!--<div th:replace="fragments/header :: default"></div>-->
     <!--seach相关-->
 
 
@@ -58,13 +58,13 @@
             -------------------->
             <ul class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <a href="index.html">Home</a>
+                    <a href="index.html" th:href="@{/index}">Home</a>
                 </li>
                 <li class="breadcrumb-item">
-                    <a href="index.html">Products</a>
+                    <a href="index.html" th:href="@{/user}">Profile</a>
                 </li>
                 <li class="breadcrumb-item">
-                    <span>Upload</span>
+                    <span>HeadIcon Upload</span>
                 </li>
             </ul>
             <!--------------------
@@ -78,15 +78,15 @@
                         <div class="element-wrapper">
                             <div class="element-box">
                                 <h5 class="form-header">
-                                    File Upload
+                                    Head Icon Upload
                                 </h5>
                                 <div class="form-desc">
                                     拖拽来上传图片
                                 </div>
 
-                                <form th:action="@{/owner/fileupload/} + ${id}" method="post" class="dropzone" id="my-awesome-dropzone" enctype="multipart/form-data">
+                                <form th:action="@{/user/head}" method="post" class="dropzone" id="my-awesome-dropzone" enctype="multipart/form-data">
                                     <div class="dz-message">
-                                        <h4>Drop files here or click to upload.</h4><div class="text-muted">(请上传图片文件 jpg,png,jepg)</div>
+                                        <h4>Drop files here or click to upload.</h4><div class="text-muted">(请上传<span style="color: red">正方形</span>图片文件 jpg,png,jepg)</div>
                                     </div>
                                 </form>
 
@@ -138,8 +138,10 @@
 <script>
     Dropzone.options.myAwesomeDropzone = {
         paramName: "file", // The name that will be used to transfer the file
+        maxFiles: 1,
+        dictMaxFilesExceeded: "您最多只能上传1个文件！",
         maxFilesize: 3, // MB
-        acceptedFiles: "image/jpeg,image/jpg,image/png"
+        acceptedFiles: "image/jpeg,image/jpg,image/png",
     };
 </script>
 <script th:src="@{/js/onOpen.js}"></script>

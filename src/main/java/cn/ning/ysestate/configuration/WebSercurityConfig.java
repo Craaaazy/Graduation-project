@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -42,12 +43,16 @@ public class WebSercurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http
                 .authorizeRequests()
-                    .antMatchers("/admin/**","/admin").hasRole("ADMIN")
+                    .antMatchers("/admin/**", "/admin").hasRole("ADMIN")
+                    .antMatchers("/houselist", "/house_detail/**", "/regis", "/houselist/**").permitAll()
+                    .anyRequest().authenticated()
                 .and()
                     .formLogin()
                     .loginPage("/login")
+                    .successForwardUrl("/index")
+                    .permitAll()
                 .and()
-                    .logout()
+                    .logout().logoutSuccessUrl("/houselist").permitAll()
                     .permitAll();
     }
 
@@ -59,7 +64,12 @@ public class WebSercurityConfig extends WebSecurityConfigurerAdapter {
                 .dataSource(dataSource)
                 .passwordEncoder(passwordEncoder);
 
-
     }
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/bower_components/**","/image/**","/css/**","/icon_fonts_assets","/img/**","/js/**","/apple-touch-icon.png","/favicon.png");
+    }
+
 
 }

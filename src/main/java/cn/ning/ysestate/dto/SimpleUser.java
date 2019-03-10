@@ -13,8 +13,11 @@ public class SimpleUser {
     private String email;
     private String username;
     private List<HouseInfo> houses;
-    private Role role;
+    private String role;
     private String phone_num;
+    private String house_sold;
+    private String total_earn;
+    private String head_icon;
 
     public SimpleUser(@Email String email, List<HouseInfo> houses, Role role, String username) {
     }

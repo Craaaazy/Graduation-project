@@ -22,39 +22,7 @@
       <!--------------------
       START - Top Bar
       -------------------->
-      <div class="top-bar-rentals">
-        <div class="logo-w">
-          <a class="logo" href="index.html">
-            <div class="logo-element"></div>
-            <div class="logo-label">
-              YS-Estate
-            </div>
-          </a>
-          <div class="filters-toggler">
-            <i class="os-icon os-icon-hamburger-menu-1"></i>
-          </div>
-        </div>
-        <div class="filters">
-          <form class="form-inline">
-            <div class="filter-w">
-              <div class="filter-body">
-                <div class="form-group">
-                  <div class="input-group">
-                    <input class="form-control " disabled type="text" value="     黄石房地产信息网">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </form>
-          <div class="buttons-w" th:unless="${#httpServletRequest.remoteUser}">
-            <a th:href="@{/login}" class="btn btn-upper btn-primary" href="#"><i class="os-icon os-icon-ui-74"></i><span>登录</span></a>
-            <a th:href="@{/regis}" class="btn btn-upper btn-primary" href="#"><i class="os-icon os-icon-ui-74"></i><span>注册</span></a>
-          </div>
-          <div class="button-w" th:if="${#httpServletRequest.remoteUser}">
-            <span style="color: whitesmoke">Welcome! </span> <a th:href="@{/index}" style="color: whitesmoke" th:text="${#httpServletRequest.remoteUser}"></a>
-          </div>
-        </div>
-      </div>
+      <div th:replace="fragments/header :: top_bar"></div>
       <!--------------------
       END - Top bar
       -------------------->
@@ -62,9 +30,9 @@
       START - Rentals Content
       -------------------->
       <div class="property-single">
-        <div class="property-media" style="background-image: url(img/property3.jpg)">
+        <div class="property-media" th:style="'background-image:url(http://localhost:8050/image/' + ${house.house_pic} + ');'">
           <div class="media-buttons">
-            <a href="#"><i class="os-icon os-icon-documents-07"></i><span>View Photos</span></a><a href="#"><i class="os-icon os-icon-ui-03"></i><span>Like</span></a>
+            <a href="#"><i class="os-icon os-icon-documents-07"></i><span>View Photos</span></a>
           </div>
         </div>
         <div class="property-info-w">
@@ -73,7 +41,7 @@
               For Sale
             </div>
             <div class="item-features">
-              <div class="feature">
+              <div class="feature" th:text="${house.zone}">
                 4 Bedrooms
               </div>
               <!--<div class="feature">-->
@@ -90,7 +58,7 @@
             <div class="item-reviews">
               <div class="reviews-stars">
                 <select class="item-star-rating">
-                  <option value="1">
+                  <option value="1" th:if="${house.comment_Star == '1'}">
                     1
                   </option>
                   <option value="2">
@@ -112,20 +80,20 @@
                 14 Reviews
               </div>
             </div>
-            <div class="property-features-highlight">
-              <div class="feature">
-                <i class="os-icon os-icon-home-34"></i><span>3 Bedrooms</span>
-              </div>
-              <div class="feature">
-                <i class="os-icon os-icon-home-13"></i><span>2 Bathrooms</span>
-              </div>
-              <div class="feature">
-                <i class="os-icon os-icon-home-09"></i><span>Modern Kitchen</span>
-              </div>
-              <div class="feature">
-                <i class="os-icon os-icon-ui-83"></i><span>Built in 2014</span>
-              </div>
-            </div>
+            <!--<div class="property-features-highlight">-->
+              <!--<div class="feature">-->
+                <!--<i class="os-icon os-icon-home-34"></i><span>3 Bedrooms</span>-->
+              <!--</div>-->
+              <!--<div class="feature">-->
+                <!--<i class="os-icon os-icon-home-13"></i><span>2 Bathrooms</span>-->
+              <!--</div>-->
+              <!--<div class="feature">-->
+                <!--<i class="os-icon os-icon-home-09"></i><span>Modern Kitchen</span>-->
+              <!--</div>-->
+              <!--<div class="feature">-->
+                <!--<i class="os-icon os-icon-ui-83"></i><span>Built in 2014</span>-->
+              <!--</div>-->
+            <!--</div>-->
             <div class="property-description" th:text="${house.detail}">
               <!--<p>-->
                 <!--Exceptional Torrey Hills home located at the end of a cul-de-sac with expansive panoramic views of nature. This lot and location is unique with only 1 neighbor and open space all around. The seller has completely remodeled inside and out in a contemporary style. You approach to a fruit tree garden leading to a gated courtyard professionally landscaped with low water usage and easy-care plants. In award winning school districts, near shopping, entertainment, dining, beaches and easy freeway access.-->
@@ -136,37 +104,12 @@
             </div>
             <div class="property-section">
               <div class="property-section-header">
-                Extra Charges
+                Location
                 <div class="filter-toggle">
                   <i class="os-icon-minus os-icon"></i>
                 </div>
               </div>
               <div class="property-section-body">
-                <div class="row">
-                  <div class="col-md-6">
-                    <ul>
-                      <li>
-                        Cleaning Fee: <strong>$50</strong>
-                      </li>
-                      <li>
-                        Security Deposit: <strong>$200</strong>
-                      </li>
-                      <li>
-                        Weekly Discount: <strong>10%</strong>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="col-md-6">
-                    <ul>
-                      <li>
-                        Monthly Discount: <strong>15%</strong>
-                      </li>
-                      <li>
-                        Weekend Price: <strong>$199 / night</strong>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
                 <div class="property-note">
                   <h6>
                     Always communicate through
@@ -177,65 +120,65 @@
                 </div>
               </div>
             </div>
-            <div class="property-section">
-              <div class="property-section-header">
-                Facts &amp; Features
-                <div class="filter-toggle">
-                  <i class="os-icon-minus os-icon"></i>
-                </div>
-              </div>
-              <div class="property-section-body">
-                <div class="row">
-                  <div class="col-md-6">
-                    <ul>
-                      <li>
-                        <i class="os-icon os-icon-fire"></i><span>Fire Detector</span>
-                      </li>
-                      <li>
-                        <i class="os-icon os-icon-ui-09"></i><span>Remote Door Lock</span>
-                      </li>
-                      <li>
-                        <i class="os-icon os-icon-old-tv-2"></i><span>Cable TV</span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="col-md-6">
-                    <ul>
-                      <li>
-                        <i class="os-icon os-icon-home-11"></i><span>Free toilet paper</span>
-                      </li>
-                      <li>
-                        <i class="os-icon os-icon-home-09"></i><span>Modern Kitchen</span>
-                      </li>
-                      <li>
-                        <i class="os-icon os-icon-ui-74"></i><span>Convenient Location</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="property-section">
-              <div class="property-section-header">
-                House Rules
-                <div class="filter-toggle">
-                  <i class="os-icon-minus os-icon"></i>
-                </div>
-              </div>
-              <div class="property-section-body">
-                <ul>
-                  <li>
-                    No smoking
-                  </li>
-                  <li>
-                    Not suitable for pets
-                  </li>
-                  <li>
-                    Check in is anytime after 3PM
-                  </li>
-                </ul>
-              </div>
-            </div>
+            <!--<div class="property-section">-->
+              <!--<div class="property-section-header">-->
+                <!--Facts &amp; Features-->
+                <!--<div class="filter-toggle">-->
+                  <!--<i class="os-icon-minus os-icon"></i>-->
+                <!--</div>-->
+              <!--</div>-->
+              <!--<div class="property-section-body">-->
+                <!--<div class="row">-->
+                  <!--<div class="col-md-6">-->
+                    <!--<ul>-->
+                      <!--<li>-->
+                        <!--<i class="os-icon os-icon-fire"></i><span>Fire Detector</span>-->
+                      <!--</li>-->
+                      <!--<li>-->
+                        <!--<i class="os-icon os-icon-ui-09"></i><span>Remote Door Lock</span>-->
+                      <!--</li>-->
+                      <!--<li>-->
+                        <!--<i class="os-icon os-icon-old-tv-2"></i><span>Cable TV</span>-->
+                      <!--</li>-->
+                    <!--</ul>-->
+                  <!--</div>-->
+                  <!--<div class="col-md-6">-->
+                    <!--<ul>-->
+                      <!--<li>-->
+                        <!--<i class="os-icon os-icon-home-11"></i><span>Free toilet paper</span>-->
+                      <!--</li>-->
+                      <!--<li>-->
+                        <!--<i class="os-icon os-icon-home-09"></i><span>Modern Kitchen</span>-->
+                      <!--</li>-->
+                      <!--<li>-->
+                        <!--<i class="os-icon os-icon-ui-74"></i><span>Convenient Location</span>-->
+                      <!--</li>-->
+                    <!--</ul>-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--<div class="property-section">-->
+              <!--<div class="property-section-header">-->
+                <!--House Rules-->
+                <!--<div class="filter-toggle">-->
+                  <!--<i class="os-icon-minus os-icon"></i>-->
+                <!--</div>-->
+              <!--</div>-->
+              <!--<div class="property-section-body">-->
+                <!--<ul>-->
+                  <!--<li>-->
+                    <!--No smoking-->
+                  <!--</li>-->
+                  <!--<li>-->
+                    <!--Not suitable for pets-->
+                  <!--</li>-->
+                  <!--<li>-->
+                    <!--Check in is anytime after 3PM-->
+                  <!--</li>-->
+                <!--</ul>-->
+              <!--</div>-->
+            <!--</div>-->
             <!--<div class="property-section">-->
               <!--<div class="property-section-header">-->
                 <!--Cancellation Policy-->
@@ -304,7 +247,7 @@
                     </div>
                   </div>
                   <div class="form-buttons">
-                    <a class="btn btn-primary" href="#"><span>Contact Agent</span><i class="os-icon os-icon-arrow-2-right"></i></a>
+                    <a class="btn btn-primary" th:href="@{/trade/} + ${house.id}" href="#"><span>Purchues</span><i class="os-icon os-icon-arrow-2-right"></i></a>
                   </div>
                 </form>
               </div>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>YS-Estate a Graduation-project</title>
+  <meta charset="utf-8">
+  <meta content="ie=edge" http-equiv="x-ua-compatible">
+  <meta content="template language" name="keywords">
+  <meta content="Tamerlan Soziev" name="author">
+  <meta content="Admin dashboard html template" name="description">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+
+  <link th:href="@{/favicon.png}" href="../static/favicon.png" rel="shortcut icon">
+  <link th:href="@{/app-touch-icon.png}" href="../static/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500" rel="stylesheet" type="text/css">
+  <link th:href="@{/bower_components/select2/dist/css/select2.min.css}" href="../static/bower_components/select2/dist/css/select2.min.css" rel="stylesheet">
+  <link th:href="@{/bower_components/bootstrap-daterangepicker/daterangepicker.css}" href="bower_components/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+  <link th:href="@{/bower_components/dropzone/dist/dropzone.css}" href="bower_components/dropzone/dist/dropzone.css" rel="stylesheet">
+  <link th:href="@{/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css}" href="../static/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+  <link th:href="@{/bower_components/fullcalendar/dist/fullcalendar.min.css}" href="../static/bower_components/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet">
+  <link th:href="@{/bower_components/perfect-scrollbar/css/perfect-scrollbar.min.css}" href="bower_components/perfect-scrollbar/css/perfect-scrollbar.min.css" rel="stylesheet">
+  <link th:href="@{/bower_components/slick-carousel/slick/slick.css}" href="bower_components/slick-carousel/slick/slick.css" rel="stylesheet">
+  <link th:href="@{/css/main.css?version=4.4.0}" href="css/main.css?version=4.4.0" rel="stylesheet">
+  <link th:href="@{/css/jquery-confirm.min.css}" href="../static/css/jquery-confirm.min.css" rel="stylesheet">
+
+</head>
+  <body class="menu-position-side menu-side-left full-screen">
+    <div class="all-wrapper solid-bg-all">
+      <div class="layout-w">
+        <!--------------------
+        START - Mobile Menu
+        -------------------->
+        <div th:replace="fragments/header :: mobile_menu"></div>
+        <!--------------------
+        END - Mobile Menu
+        --------------------><!--------------------
+        START - Main Menu
+        -------------------->
+        <div th:replace="fragments/side_menu :: sider"></div>
+        <!--------------------
+        END - Main Menu
+        -------------------->
+        <div class="content-w">
+          <!--------------------
+          START - Top Bar
+          -------------------->
+          <div th:replace="fragments/side_menu :: head_icon"></div>
+          <!--------------------
+          END - Top Bar
+          --------------------><!--------------------
+          START - Breadcrumbs
+          -------------------->
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="index.html">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+              <a href="index.html">Products</a>
+            </li>
+            <li class="breadcrumb-item">
+              <span>Laptop with retina screen</span>
+            </li>
+          </ul>
+          <!--------------------
+          END - Breadcrumbs
+          -------------------->
+          <div class="content-i">
+            <div class="content-box">
+              <div class="element-wrapper">
+                <div class="invoice-w">
+                  <div class="infos">
+                    <div class="info-1">
+                      <div class="invoice-logo-w">
+                        <img alt="" src="../static/img/logo2.png" th:src="@{/img/logo.png}">
+                      </div>
+                      <div class="company-name">
+                        订单确认
+                      </div>
+                      <div class="company-address">
+                        <span th:text="${house.title}"></span></br><span th:text="${house.locate}"></span>
+                      </div>
+                      <div class="company-extra" th:text="${house.owner_phone}">
+                        tel. 858.745.5577
+                      </div>
+                    </div>
+                    <div class="info-2">
+                      <div class="company-name">
+                        YS-Estate
+                      </div>
+                      <div class="company-address">
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="invoice-heading">
+                    <h3>
+                      Invoice
+                    </h3>
+                    <div class="invoice-date" id="current_time">
+                      22 December 2017
+                    </div>
+                  </div>
+                  <div class="invoice-body">
+
+                    <div class="invoice-table">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>
+                              house title
+                            </th>
+                            <th class="text-right">
+                              Price
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td th:text="${house.title}">
+                              User Interface
+                            </td>
+                            <td class="text-right" th:text="${'￥' + house.sellPrice}">
+                              $4,500
+                            </td>
+                          </tr>
+                        </tbody>
+                        <tfoot>
+                          <tr>
+                            <td>
+                              Total
+                            </td>
+                            <td class="text-right" colspan="2" th:text="${house.sellPrice}">
+                              $15,490
+                            </td>
+                          </tr>
+                        </tfoot>
+                      </table>
+                      <div class="terms">
+                        <div class="terms-header">
+                          Terms and Conditions
+                        </div>
+                        <div class="terms-content">
+                          Should be paid as soon as received, otherwise a 5% penalty fee is applied
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="invoice-footer">
+                    <div class="invoice-logo">
+                      <img alt="" th:src="@{/img/logo.png}" src="../img/logo.png"><span>YS-ESTATE Inc</span>
+                    </div>
+                    <div class="invoice-info">
+                      <span th:text="${house.id}" hidden></span>
+                      <button class="btn btn-primary" id="confirm">确认交易</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="display-type"></div>
+    </div>
+
+    <script th:src="@{/bower_components/jquery/dist/jquery.min.js}" src="../static/bower_components/jquery/dist/jquery.min.js"></script>
+    <script th:src="@{/bower_components/popper.js/dist/umd/popper.min.js}" src="../static/bower_components/popper.js/dist/umd/popper.min.js"></script>
+    <script th:src="@{/bower_components/moment/moment.js}" src="../static/bower_components/moment/moment.js"></script>
+    <script th:src="@{/bower_components/chart.js/dist/Chart.min.js}" src="../static/bower_components/chart.js/dist/Chart.min.js"></script>
+    <script th:src="@{/bower_components/select2/dist/js/select2.full.min.js}" src="../static/bower_components/select2/dist/js/select2.full.min.js"></script>
+    <script th:src="@{/bower_components/jquery-bar-rating/dist/jquery.barrating.min.js}" src="../static/bower_components/jquery-bar-rating/dist/jquery.barrating.min.js"></script>
+    <script th:src="@{/bower_components/ckeditor/ckeditor.js}" src="../static/bower_components/ckeditor/ckeditor.js"></script>
+    <script th:src="@{/bower_components/bootstrap-validator/dist/validator.min.js}" src="../static/bower_components/bootstrap-validator/dist/validator.min.js"></script>
+    <script th:src="@{/bower_components/bootstrap-daterangepicker/daterangepicker.js}" src="../static/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script th:src="@{/bower_components/ion.rangeSlider/js/ion.rangeSlider.min.js}" src="../static/bower_components/ion.rangeSlider/js/ion.rangeSlider.min.js"></script>
+    <script th:src="@{/bower_components/dropzone/dist/dropzone.js}" src="../static/bower_components/dropzone/dist/dropzone.js"></script>
+    <script th:src="@{/bower_components/editable-table/mindmup-editabletable.js}" src="../static/bower_components/editable-table/mindmup-editabletable.js"></script>
+    <script th:src="@{/bower_components/fullcalendar/dist/fullcalendar.min.js}" src="../static/bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
+    <script th:src="@{/bower_components/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js}" src="../static/bower_components/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js"></script>
+    <script th:src="@{/bower_components/tether/dist/js/tether.min.js}" src="../static/bower_components/tether/dist/js/tether.min.js"></script>
+    <script th:src="@{/bower_components/slick-carousel/slick/slick.min.js}" src="../static/bower_components/slick-carousel/slick/slick.min.js"></script>
+    <script th:src="@{/bower_components/bootstrap/js/dist/util.js}" src="../static/bower_components/bootstrap/js/dist/util.js"></script>
+    <script th:src="@{/bower_components/bootstrap/js/dist/alert.js}" src="../static/bower_components/bootstrap/js/dist/alert.js"></script>
+    <script th:src="@{/bower_components/bootstrap/js/dist/button.js}" src="../static/bower_components/bootstrap/js/dist/button.js"></script>
+    <script th:src="@{/bower_components/bootstrap/js/dist/carousel.js}" src="../static/bower_components/bootstrap/js/dist/carousel.js"></script>
+    <script th:src="@{/bower_components/bootstrap/js/dist/collapse.js}" src="../static/bower_components/bootstrap/js/dist/collapse.js"></script>
+    <script th:src="@{/bower_components/bootstrap/js/dist/dropdown.js}" src="../static/bower_components/bootstrap/js/dist/dropdown.js"></script>
+    <script th:src="@{/bower_components/bootstrap/js/dist/modal.js}" src="../static/bower_components/bootstrap/js/dist/modal.js"></script>
+    <script th:src="@{/bower_components/bootstrap/js/dist/tab.js}" src="../static/bower_components/bootstrap/js/dist/tab.js"></script>
+    <script th:src="@{/bower_components/bootstrap/js/dist/tooltip.js}" src="../static/bower_components/bootstrap/js/dist/tooltip.js"></script>
+    <script th:src="@{/bower_components/bootstrap/js/dist/popover.js}" src="../static/bower_components/bootstrap/js/dist/popover.js"></script>
+    <script th:src="@{/js/demo_customizer.js?version=4.4.0}" src="../static/js/demo_customizer.js?version=4.4.0"></script>
+    <script th:src="@{/js/main.js?version=4.4.0}" src="../static/js/main.js?version=4.4.0"></script>
+    <script th:src="@{/js/main_rentals.js?version=4.4.0}" src="../static/js/main_rentals.js?version=4.4.0"></script>
+
+    <script th:src="@{/js/jquery-confirm.min.js}" src="../static/js/jquery-confirm.min.js"></script>
+
+  <script>
+      $(document).ready(function () {
+          var now = new Date();
+          var time = now.getFullYear() + '-' + now.getMonth() + '-' + now.getDay();
+          $('#current_time').text(time);
+
+
+          $('#confirm').on('click', function () {
+              var id = $('#confirm').parent("div").find("span:eq(0)").text();
+
+              $.confirm({
+                  title: '确认购买?',
+                  content: '存款将自动转到对方账户',
+                  buttons: {
+                      confirm: function () {
+                          $.ajax({
+                              url: '/trade/' + id,
+                              type: 'post',
+
+                              success: function (res) {
+                                  $.alert(res);
+                                  window.href('http://localhost:8050/index.html');
+                              },
+                              error: function (res) {
+                                  $.alert('前端发生错误' + res.toString());
+                              }
+
+                          })
+
+                      },
+                      cancel: function () {
+                      }
+
+                  }
+              });
+          })
+      })
+
+  </script>
+
+  <script th:src="@{/js/onOpen.js}"></script>
+  </body>
+</html>

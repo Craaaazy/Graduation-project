@@ -5,138 +5,31 @@
     <title>Title</title>
 </head>
 <body>
-
+<!--是index最上面那一栏-->
 <div th:fragment="head_icon">
     <div class="top-bar color-scheme-transparent">
         <!--------------------
         START - Top Menu Controls
         -------------------->
         <div class="top-menu-controls">
-            <div class="element-search autosuggest-search-activator">
-                <input placeholder="Start typing to search..." type="text">
-            </div>
-            <!--------------------
-            START - Messages Link in secondary top menu
-            -------------------->
-            <div class="messages-notifications os-dropdown-trigger os-dropdown-position-left">
-                <i class="os-icon os-icon-mail-14"></i>
-                <div class="new-messages-count">
-                    12
-                </div>
-                <div class="os-dropdown light message-list">
-                    <ul>
-                        <li>
-                            <a href="#">
-                                <div class="user-avatar-w">
-                                    <img alt="" src="../static/img/avatar1.jpg">
-                                </div>
-                                <div class="message-content">
-                                    <h6 class="message-from">
-                                        John Mayers
-                                    </h6>
-                                    <h6 class="message-title">
-                                        Account Update
-                                    </h6>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="user-avatar-w">
-                                    <img alt="" src="img/avatar2.jpg">
-                                </div>
-                                <div class="message-content">
-                                    <h6 class="message-from">
-                                        Phil Jones
-                                    </h6>
-                                    <h6 class="message-title">
-                                        Secutiry Updates
-                                    </h6>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="user-avatar-w">
-                                    <img alt="" src="img/avatar3.jpg">
-                                </div>
-                                <div class="message-content">
-                                    <h6 class="message-from">
-                                        Bekky Simpson
-                                    </h6>
-                                    <h6 class="message-title">
-                                        Vacation Rentals
-                                    </h6>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="user-avatar-w">
-                                    <img alt="" src="img/avatar4.jpg">
-                                </div>
-                                <div class="message-content">
-                                    <h6 class="message-from">
-                                        Alice Priskon
-                                    </h6>
-                                    <h6 class="message-title">
-                                        Payment Confirmation
-                                    </h6>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!--------------------
-            END - Messages Link in secondary top menu
-            -------------------->
-            <!--------------------
-            START - Settings Link in secondary top menu
-            -------------------->
-            <div class="top-icon top-settings os-dropdown-trigger os-dropdown-position-left">
-                <i class="os-icon os-icon-ui-46"></i>
-                <div class="os-dropdown">
-                    <div class="icon-w">
-                        <i class="os-icon os-icon-ui-46"></i>
-                    </div>
-                    <ul>
-                        <li>
-                            <a href="users_profile_small.html"><i class="os-icon os-icon-ui-49"></i><span>Profile Settings</span></a>
-                        </li>
-                        <li>
-                            <a href="users_profile_small.html"><i class="os-icon os-icon-grid-10"></i><span>Billing Info</span></a>
-                        </li>
-                        <li>
-                            <a href="users_profile_small.html"><i class="os-icon os-icon-ui-44"></i><span>My Invoices</span></a>
-                        </li>
-                        <li>
-                            <a href="users_profile_small.html"><i class="os-icon os-icon-ui-15"></i><span>Cancel Account</span></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!--------------------
-            END - Settings Link in secondary top menu
-            -------------------->
             <!--------------------
             START - User avatar and menu in secondary top menu
             -------------------->
             <div class="logged-user-w">
                 <div class="logged-user-i">
                     <div class="avatar-w">
-                        <img alt="" src="img/avatar1.jpg">
+                        <img alt="" src="img/avatar1.jpg" id="head">
                     </div>
                     <div class="logged-user-menu color-style-bright">
                         <div class="logged-user-avatar-info">
                             <div class="avatar-w">
-                                <img alt="" src="img/avatar1.jpg">
+                                <img alt="" src="img/avatar1.jpg" id="head">
                             </div>
                             <div class="logged-user-info-w">
-                                <div class="logged-user-name">
+                                <div class="logged-user-name" id="name">
                                     Maria Gomez
                                 </div>
-                                <div class="logged-user-role">
+                                <div class="logged-user-role" id="role">
                                     Administrator
                                 </div>
                             </div>
@@ -146,19 +39,13 @@
                         </div>
                         <ul>
                             <li>
-                                <a href="apps_email.html"><i class="os-icon os-icon-mail-01"></i><span>Incoming Mail</span></a>
+                                <a href="users_profile_big.html" th:href="@{/user}"><i class="os-icon os-icon-user-male-circle2"></i><span>Profile</span></a>
                             </li>
                             <li>
-                                <a href="users_profile_big.html"><i class="os-icon os-icon-user-male-circle2"></i><span>Profile Details</span></a>
+                                <a href="users_profile_small.html"><i class="os-icon os-icon-coins-4"></i><span>Billing</span></a>
                             </li>
                             <li>
-                                <a href="users_profile_small.html"><i class="os-icon os-icon-coins-4"></i><span>Billing Details</span></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="os-icon os-icon-others-43"></i><span>Notifications</span></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="os-icon os-icon-signs-11" th:href="@{/logout}"></i><span>Logout</span></a>
+                                <a href="#" th:href="@{/logout}"><i class="os-icon os-icon-signs-11"></i><span>Logout</span></a>
                             </li>
                         </ul>
                     </div>
@@ -173,9 +60,10 @@
         -------------------->
     </div></div>
 
+<!--是侧边栏-->
 <div th:fragment="sider" class="menu-w color-scheme-light color-style-transparent menu-position-side menu-side-left menu-layout-compact sub-menu-style-over sub-menu-color-bright selected-menu-color-light menu-activated-on-hover menu-has-selected-link">
         <div class="logo-w">
-            <a class="logo" href="index.html">
+            <a class="logo" href="index.html" th:href="@{/index}">
                 <div class="logo-element"></div>
                 <div class="logo-label">
                     YS-Estate
@@ -185,15 +73,11 @@
         <div class="logged-user-w avatar-inline">
             <div class="logged-user-i">
                 <div class="avatar-w">
-                    <img alt="" src="../img/avatar1.jpg">
+                    <img alt="" src="../img/avatar1.jpg" id="head">
                 </div>
                 <div class="logged-user-info-w">
-                    <div class="logged-user-name" th:text="@{user.username}">
-                        Ning123
-                    </div>
-                    <div class="logged-user-role" th:text="@{user.role}">
-                        Administrator
-                    </div>
+                    <div class="logged-user-name" id="name"></div>
+                    <div class="logged-user-role" id="role"></div>
                 </div>
                 <div class="logged-user-toggler-arrow">
                     <div class="os-icon os-icon-chevron-down"></div>
@@ -201,13 +85,13 @@
                 <div class="logged-user-menu color-style-bright">
                     <div class="logged-user-avatar-info">
                         <div class="avatar-w">
-                            <img alt="" src="../img/avatar1.jpg">
+                            <img alt="" src="../img/avatar1.jpg" id="head">
                         </div>
                         <div class="logged-user-info-w">
-                            <div class="logged-user-name">
+                            <div class="logged-user-name" id="name">
                                 Maria Gomez
                             </div>
-                            <div class="logged-user-role">
+                            <div class="logged-user-role" id="role">
                                 Administrator
                             </div>
                         </div>
@@ -217,19 +101,13 @@
                     </div>
                     <ul>
                         <li>
-                            <a href="apps_email.html"><i class="os-icon os-icon-mail-01"></i><span>Incoming Mail</span></a>
+                            <a href="users_profile_big.html" th:href="@{/user}"><i class="os-icon os-icon-user-male-circle2"></i><span>Profile</span></a>
                         </li>
                         <li>
-                            <a href="users_profile_big.html"><i class="os-icon os-icon-user-male-circle2"></i><span>Profile Details</span></a>
+                            <a href="users_profile_small.html"><i class="os-icon os-icon-coins-4"></i><span>Billing</span></a>
                         </li>
                         <li>
-                            <a href="users_profile_small.html"><i class="os-icon os-icon-coins-4"></i><span>Billing Details</span></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="os-icon os-icon-others-43"></i><span>Notifications</span></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="os-icon os-icon-signs-11"></i><span>Logout</span></a>
+                            <a href="#" th:href="@{/logout}"><i class="os-icon os-icon-signs-11"></i><span>Logout</span></a>
                         </li>
                     </ul>
                 </div>
@@ -259,7 +137,7 @@
             </li>
 
             <li class=" has-sub-menu">
-                <a href="#" th:href="@{/publish}">
+                <a href="#" th:href="@{/owner/publish}">
                     <div class="icon-w">
                         <div class="os-icon os-icon-zap"></div>
                     </div>
@@ -277,7 +155,7 @@
         </ul>
 
     </div>
-
+<!--右侧边栏 原来用于table_regular-->
 <div th:fragment="table_menu_right" class="content-panel">
         <div class="content-panel-close">
             <i class="os-icon os-icon-close"></i>
@@ -449,6 +327,255 @@ START - Support Agents
             </div>
         </div>
     </div>
+
+<!--首页的右边栏-->
+<div th:fragment="index_menu_right" class="content-panel">
+    <div class="content-panel-close">
+        <i class="os-icon os-icon-close"></i>
+    </div>
+    <div class="element-wrapper">
+        <h6 class="element-header">
+            Quick Links
+        </h6>
+        <div class="element-box-tp">
+            <div class="el-buttons-list full-width">
+                <a class="btn btn-white btn-sm" href="#"><i class="os-icon os-icon-delivery-box-2"></i><span>Create New Product</span></a><a class="btn btn-white btn-sm" href="#"><i class="os-icon os-icon-window-content"></i><span>Customer Comments</span></a><a class="btn btn-white btn-sm" href="#"><i class="os-icon os-icon-wallet-loaded"></i><span>Store Settings</span></a>
+            </div>
+        </div>
+    </div>
+    <!--------------------
+    START - Support Agents
+    -------------------->
+    <div class="element-wrapper">
+        <h6 class="element-header">
+            Support Agents
+        </h6>
+        <div class="element-box-tp">
+            <div class="profile-tile">
+                <a class="profile-tile-box" href="user_profile.html">
+                    <div class="pt-avatar-w">
+                        <img alt="" src="img/avatar1.jpg">
+                    </div>
+                    <div class="pt-user-name">
+                        John Mayers
+                    </div>
+                </a>
+                <div class="profile-tile-meta">
+                    <ul>
+                        <li>
+                            Last Login:<strong>Online Now</strong>
+                        </li>
+                        <li>
+                            Tickets:<strong><a href="apps_support_index.html">12</a></strong>
+                        </li>
+                        <li>
+                            Response Time:<strong>2 hours</strong>
+                        </li>
+                    </ul>
+                    <div class="pt-btn">
+                        <a class="btn btn-success btn-sm" href="apps_full_chat.html">Send Message</a>
+                    </div>
+                </div>
+            </div>
+            <div class="profile-tile">
+                <a class="profile-tile-box" href="user_profile.html">
+                    <div class="pt-avatar-w">
+                        <img alt="" src="img/avatar3.jpg">
+                    </div>
+                    <div class="pt-user-name">
+                        Ben Gossman
+                    </div>
+                </a>
+                <div class="profile-tile-meta">
+                    <ul>
+                        <li>
+                            Last Login:<strong>Offline</strong>
+                        </li>
+                        <li>
+                            Tickets:<strong><a href="apps_support_index.html">9</a></strong>
+                        </li>
+                        <li>
+                            Response Time:<strong>3 hours</strong>
+                        </li>
+                    </ul>
+                    <div class="pt-btn">
+                        <a class="btn btn-secondary btn-sm" href="apps_full_chat.html">Send Message</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--------------------
+    END - Support Agents
+    --------------------><!--------------------
+              START - Recent Activity
+              -------------------->
+    <div class="element-wrapper">
+        <h6 class="element-header">
+            Recent Activity
+        </h6>
+        <div class="element-box-tp">
+            <div class="activity-boxes-w">
+                <div class="activity-box-w">
+                    <div class="activity-time">
+                        10 Min
+                    </div>
+                    <div class="activity-box">
+                        <div class="activity-avatar">
+                            <img alt="" src="img/avatar1.jpg">
+                        </div>
+                        <div class="activity-info">
+                            <div class="activity-role">
+                                John Mayers
+                            </div>
+                            <strong class="activity-title">Opened New Account</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="activity-box-w">
+                    <div class="activity-time">
+                        2 Hours
+                    </div>
+                    <div class="activity-box">
+                        <div class="activity-avatar">
+                            <img alt="" src="img/avatar2.jpg">
+                        </div>
+                        <div class="activity-info">
+                            <div class="activity-role">
+                                Ben Gossman
+                            </div>
+                            <strong class="activity-title">Posted Comment</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="activity-box-w">
+                    <div class="activity-time">
+                        5 Hours
+                    </div>
+                    <div class="activity-box">
+                        <div class="activity-avatar">
+                            <img alt="" src="img/avatar3.jpg">
+                        </div>
+                        <div class="activity-info">
+                            <div class="activity-role">
+                                Phil Nokorin
+                            </div>
+                            <strong class="activity-title">Opened New Account</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="activity-box-w">
+                    <div class="activity-time">
+                        2 Days
+                    </div>
+                    <div class="activity-box">
+                        <div class="activity-avatar">
+                            <img alt="" src="img/avatar4.jpg">
+                        </div>
+                        <div class="activity-info">
+                            <div class="activity-role">
+                                Jenny Miksa
+                            </div>
+                            <strong class="activity-title">Uploaded Image</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--------------------
+    END - Recent Activity
+    --------------------><!--------------------
+              START - Team Members
+              -------------------->
+    <div class="element-wrapper">
+        <h6 class="element-header">
+            Team Members
+        </h6>
+        <div class="element-box-tp">
+            <div class="input-search-w">
+                <input class="form-control rounded bright" placeholder="Search team members..." type="search">
+            </div>
+            <div class="users-list-w">
+                <div class="user-w with-status status-green">
+                    <div class="user-avatar-w">
+                        <div class="user-avatar">
+                            <img alt="" src="img/avatar1.jpg">
+                        </div>
+                    </div>
+                    <div class="user-name">
+                        <h6 class="user-title">
+                            John Mayers
+                        </h6>
+                        <div class="user-role">
+                            Account Manager
+                        </div>
+                    </div>
+                    <a class="user-action" href="user_profile.html">
+                        <div class="os-icon os-icon-email-forward"></div>
+                    </a>
+                </div>
+                <div class="user-w with-status status-green">
+                    <div class="user-avatar-w">
+                        <div class="user-avatar">
+                            <img alt="" src="img/avatar2.jpg">
+                        </div>
+                    </div>
+                    <div class="user-name">
+                        <h6 class="user-title">
+                            Ben Gossman
+                        </h6>
+                        <div class="user-role">
+                            Administrator
+                        </div>
+                    </div>
+                    <a class="user-action" href="user_profile.html">
+                        <div class="os-icon os-icon-email-forward"></div>
+                    </a>
+                </div>
+                <div class="user-w with-status status-red">
+                    <div class="user-avatar-w">
+                        <div class="user-avatar">
+                            <img alt="" src="img/avatar3.jpg">
+                        </div>
+                    </div>
+                    <div class="user-name">
+                        <h6 class="user-title">
+                            Phil Nokorin
+                        </h6>
+                        <div class="user-role">
+                            HR Manger
+                        </div>
+                    </div>
+                    <a class="user-action" href="user_profile.html">
+                        <div class="os-icon os-icon-email-forward"></div>
+                    </a>
+                </div>
+                <div class="user-w with-status status-green">
+                    <div class="user-avatar-w">
+                        <div class="user-avatar">
+                            <img alt="" src="../static/img/avatar4.jpg">
+                        </div>
+                    </div>
+                    <div class="user-name">
+                        <h6 class="user-title">
+                            Jenny Miksa
+                        </h6>
+                        <div class="user-role">
+                            Lead Developer
+                        </div>
+                    </div>
+                    <a class="user-action" href="user_profile.html">
+                        <div class="os-icon os-icon-email-forward"></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--------------------
+    END - Team Members
+    -------------------->
+</div>
 
 </body>
 </html>

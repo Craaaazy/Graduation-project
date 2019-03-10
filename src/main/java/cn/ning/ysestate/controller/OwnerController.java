@@ -58,7 +58,6 @@ public class OwnerController {
             houseInfo.setDetail(map.get("detail"));
             houseInfo.setLocate(map.get("locate"));
             houseInfo.setTitle(map.get("title"));
-            houseInfo.setRentPrice(map.get("rent"));
             houseInfo.setSellPrice(map.get("sell"));
             houseInfo.setZone(map.get("zone"));
 
@@ -66,6 +65,7 @@ public class OwnerController {
             houseInfo.setUploadTime(df.format(new Date()));
             User user = userService.findByUsername(principal.getName());
             houseInfo.setUser(user);
+            houseInfo.setSell(false);
             houseService.save(houseInfo);
 
             return "SUCCESS";
@@ -98,7 +98,6 @@ public class OwnerController {
             house.setCheck(houseInfo.get(i).isCheck());
             house.setId(houseInfo.get(i).getId());
             house.setSellPrice(houseInfo.get(i).getSellPrice());
-            house.setRentPrice(houseInfo.get(i).getRentPrice());
             house.setClick_Num(houseInfo.get(i).getClick_Num());
 
             houses.add(house);
@@ -135,7 +134,6 @@ public class OwnerController {
 
         Optional<HouseInfo> houseInfo = houseService.findById(id);
 
-
         for (int i =0; i< files.size(); ++i) {
             file = files.get(i);
             if (!file.isEmpty()) {
@@ -158,6 +156,8 @@ public class OwnerController {
         }
 
         houseInfo.get().setHouse_pic(saveFileName.toString());
+        houseInfo.get().setPic_front(saveFileName.toString().split(",")[0]);
+        houseService.save(houseInfo.get());
 
         return "upload successful";
 

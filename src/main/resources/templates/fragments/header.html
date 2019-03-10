@@ -7,7 +7,7 @@
 
 </head>
 <body>
-
+<!--搜索推荐栏  已经删了-->
 <header th:fragment="default">
     <div class="search-with-suggestions-w">
         <div class="search-with-suggestions-modal">
@@ -134,7 +134,7 @@
         </div>
     </div>
 </header>
-
+<!--responsive window-->
 <div th:fragment="mobile_menu" class="menu-mobile menu-activated-on-click color-scheme-dark">
     <div class="mm-logo-buttons-w">
         <a class="mm-logo" th:href="@{/index}" href="index.html"><img src="../img/logo.png"><span>YS-Estate</span></a>
@@ -461,6 +461,43 @@
             <div class="btn-w">
                 <a class="btn btn-white btn-rounded" href="https://themeforest.net/item/light-admin-clean-bootstrap-dashboard-html-template/19760124?ref=Osetin" target="_blank">Purchase Now</a>
             </div>
+        </div>
+    </div>
+</div>
+
+<div th:fragment="top_bar" class="top-bar-rentals">
+    <div class="logo-w">
+        <a class="logo" th:href="@{/houselist}">
+            <div class="logo-element"></div>
+            <div class="logo-label">
+                YS-Estate
+            </div>
+        </a>
+        <div class="filters-toggler">
+            <i class="os-icon os-icon-hamburger-menu-1"></i>
+        </div>
+    </div>
+    <div class="filters">
+        <form class="form-inline">
+            <div class="filter-w">
+                <div class="filter-body">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input class="form-control " type="text" value="search...">
+                        </div>
+                        <div class="buttons-w">
+                            <a class="btn btn-upper btn-primary" href="#"><i class="os-icon os-icon-ui-37"></i><span>Search</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="buttons-w" th:unless="${#httpServletRequest.remoteUser}">
+            <a th:href="@{/login}" class="btn btn-upper btn-primary" href="#"><i class="os-icon os-icon-ui-74"></i><span>登录</span></a>
+            <a th:href="@{/regis}" class="btn btn-upper btn-primary" href="#"><i class="os-icon os-icon-ui-74"></i><span>注册</span></a>
+        </div>
+        <div class="button-w" th:if="${#httpServletRequest.remoteUser}">
+            <span style="color: whitesmoke">Welcome! </span> <a th:href="@{/index}" style="color: whitesmoke" th:text="${#httpServletRequest.remoteUser}"></a>
         </div>
     </div>
 </div>

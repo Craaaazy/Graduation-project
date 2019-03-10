@@ -31,7 +31,6 @@ function onDelete(btn) {
                     type:'delete',
 
                     success:function (res){
-                        $.alert('删除成功!');
                         window.location.reload();
                     },
                     error:function(res){

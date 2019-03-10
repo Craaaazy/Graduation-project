@@ -7,6 +7,7 @@ import cn.ning.ysestate.service.HouseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -45,6 +46,11 @@ public class HouseServiceImpl implements HouseService {
     @Override
     public Page<HouseInfo> findAll(Pageable pageable) {
         return houseReprository.findAll(pageable);
+    }
+
+    @Override
+    public Page<HouseInfo> findAll(Specification<HouseInfo> specification, Pageable pageable) {
+        return houseReprository.findAll(specification, pageable);
     }
 
 }

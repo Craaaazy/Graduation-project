@@ -34,15 +34,31 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         roleService.save(role1);
         roleService.save(role2);
 
-        User user = new User();
-        user.setUsername("ning123");
-        user.setPassword("123");
-        user.setActive(true);
-        user.setRole(role1);
-        user.setEmail("382712256@qq.com");
-        user.setPhone_num("12345679");
+        User user1 = new User();
+        user1.setUsername("ning123");
+        user1.setPassword("123");
+        user1.setActive(true);
+        user1.setRole(role1);
+        user1.setEmail("382712256@qq.com");
+        user1.setPhone_num("12345679");
+        user1.setBalance("5000");
+        user1.setHouse_sold("2");
+        user1.setTotal_earn("10000");
+        user1.setHead_icon("head1.jpg");
 
-        userService.save(user);
+        userService.save(user1);
+
+        User user2 = new User();
+        user2.setUsername("testuser");
+        user2.setPassword("123");
+        user2.setActive(true);
+        user2.setRole(role1);
+        user2.setEmail("111@qq.com");
+        user2.setPhone_num("1930485763");
+        user2.setBalance("100000");
+        user2.setHead_icon("head2.jpg");
+
+        userService.save(user2);
 
         HouseInfo houseInfo;
         for (int i = 0; i < 10; i++) {
@@ -54,8 +70,10 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
             houseInfo.setUploadTime(df.format(new Date()));
             houseInfo.setUser(userService.findByUsername("ning123"));
             houseInfo.setTitle("NO." + i +" testhouse" + i);
-            houseInfo.setHouse_pic("xxx");
+            houseInfo.setHouse_pic("test.PNG,test1.PNG,");
+            houseInfo.setPic_front("test.PNG");
             houseInfo.setClick_Num((int)(Math.random()*100));
+            houseInfo.setComment_Star(String.valueOf((int)(Math.random()*5)));
 
             houseService.save(houseInfo);
         }

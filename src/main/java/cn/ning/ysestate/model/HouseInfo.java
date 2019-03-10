@@ -27,10 +27,12 @@ public class HouseInfo {
     private String locate;
     private String detail;
     private String house_pic;
+    private String pic_front;  //取house_pic第一个作为封面 因为分页+前端那些东西实在不好分割
+
     @NotNull
     private boolean isCheck; // false for 未审核, true for 已审核.
+    private boolean isSell;
 
-    private String rentPrice;
     private String sellPrice;
 
     private String uploadTime;

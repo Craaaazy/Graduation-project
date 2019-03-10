@@ -23,39 +23,7 @@
       <!--------------------
       START - Top Bar
       -------------------->
-      <div class="top-bar-rentals">
-        <div class="logo-w">
-          <a class="logo" href="index.html">
-            <div class="logo-element"></div>
-            <div class="logo-label">
-              YS-Estate
-            </div>
-          </a>
-          <div class="filters-toggler">
-            <i class="os-icon os-icon-hamburger-menu-1"></i>
-          </div>
-        </div>
-        <div class="filters">
-          <form class="form-inline">
-            <div class="filter-w">
-              <div class="filter-body">
-                <div class="form-group">
-                  <div class="input-group">
-                    <input class="form-control " disabled type="text" value="     黄石房地产信息网">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </form>
-          <div class="buttons-w" th:unless="${#httpServletRequest.remoteUser}">
-            <a th:href="@{/login}" class="btn btn-upper btn-primary" href="#"><i class="os-icon os-icon-ui-74"></i><span>登录</span></a>
-            <a th:href="@{/regis}" class="btn btn-upper btn-primary" href="#"><i class="os-icon os-icon-ui-74"></i><span>注册</span></a>
-          </div>
-          <div class="button-w" th:if="${#httpServletRequest.remoteUser}">
-            <span style="color: whitesmoke">Welcome! </span> <a th:href="@{/index}" style="color: whitesmoke" th:text="${#httpServletRequest.remoteUser}"></a>
-          </div>
-        </div>
-      </div>
+      <div th:replace="fragments/header :: top_bar"></div>
       <!--------------------
       END - Top bar
       -------------------->
@@ -72,22 +40,6 @@
             <h4>
               Filter
             </h4>
-            <div class="reset-filters">
-              <i class="os-icon-close os-icon"></i><span>Reset Filters</span>
-            </div>
-          </div>
-          <div class="filter-w">
-            <div class="filter-toggle">
-              <i class="os-icon-minus os-icon"></i>
-            </div>
-            <h6 class="filter-header">
-              Listing Type
-            </h6>
-            <div class="filter-body">
-              <div class="toggled-buttons">
-                <a class="btn btn-toggled on" href="#">Show All</a><a class="btn btn-toggled off" href="#">For Rent</a><a class="btn btn-toggled off" href="#">For Sale</a>
-              </div>
-            </div>
           </div>
           <div class="filter-w">
             <div class="filter-toggle">
@@ -121,7 +73,7 @@
               Zone
             </h6>
             <div class="filter-body">
-              <select class="select2" multiple="true" name="">
+              <select class="select2" multiple="false" name="">
                 <option>
                  西塞山区
                 </option>
@@ -147,27 +99,15 @@
             <div class="list-info">
               <span th:text="${page.totalElements}"></span> Properties found in YS
             </div>
-            <div class="list-order">
-              <label for="">Order By:</label><select>
-                <option>
-                  Relevance
-                </option>
-                <option>
-                  Date
-                </option>
-                <option>
-                  Price
-                </option>
-              </select>
-            </div>
           </div>
           <div class="property-items as-grid">
             <!--------------------
-            单个houseinfo  缺图片 缺星级 展示
+            单个houseinfo
             -------------------->
             <div class="property-item" th:each="house : ${page.content}">
+              <input th:type="hidden" th:value="${house.house_pic}" id="pic"/>
               <a class="item-media-w" href="rentals_single.html" th:href="@{/house_detail/}+${house.id}">
-                <div class="item-media" style="background-image: url(img/property2.jpg)"></div>
+                <div class="item-media" id="item-pic" th:style="'background-image:url(http://localhost:8050/image/' + ${house.pic_front} + ');'"></div>
               </a>
               <div class="item-info">
                 <div class="item-features">
@@ -183,20 +123,20 @@
                 </h3>
                 <div class="item-reviews">
                   <div class="reviews-stars">
-                    <select class="item-star-rating">
-                      <option value="1">
+                    <select class="item-star-rating" th:value="${house.comment_Star}">
+                      <option value="1" th:selected="${house.comment_Star == '1'}">
                         1
                       </option>
-                      <option value="2">
+                      <option value="2" th:selected="${house.comment_Star == '2'}">
                         2
                       </option>
-                      <option value="3">
+                      <option value="3" th:selected="${house.comment_Star == '3'}">
                         3
                       </option>
-                      <option selected="yes" value="4">
+                      <option value="4" th:selected="${house.comment_Star == '4'}">
                         4
-                      </option>
-                      <option value="5">
+                      <!--</option>-->
+                      <option value="5" th:selected="${house.comment_Star == '5'}">
                         5
                       </option>
                     </select>
@@ -207,7 +147,7 @@
                 </div>
                 <div class="item-price-buttons">
                   <div class="item-price">
-                    <strong th:text="'$' + ${house.sellPrice}">$350</strong><span>/</span>
+                    <strong th:text="'￥' + ${house.sellPrice}">$350</strong>
                   </div>
                   <div class="item-buttons">
                     <a class="btn btn-outline-primary" th:href="@{/house_detail/}+${house.id}" href="rentals_single.html"><span>Details</span><i class="os-icon os-icon-arrow-2-right"></i></a>
@@ -221,8 +161,7 @@
           </div>
           <!-- 分页 ok-->
           <div class="pagination-w">
-            <div class="pagination-info">
-              Showing 20-40 Properties found in Brooklyn, NY
+            <div>
             </div>
             <div class="pagination-links">
               <ul class="pagination">
@@ -297,5 +236,9 @@
   <script th:src="@{/js/main.js?version=4.4.0}" src="../static/js/main.js?version=4.4.0"></script>
 
   <script th:src="@{/js/main_rentals.js?version=4.4.0}" src="../static/js/main_rentals.js?version=4.4.0"></script>
+
+<script>
+
+</script>
 
 </html>

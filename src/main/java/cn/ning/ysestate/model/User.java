@@ -3,6 +3,7 @@ package cn.ning.ysestate.model;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.UniqueElements;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -32,9 +33,19 @@ public class User {
     private String varidateCode;
     private String Phone_num;
 
+    private String balance;
+    private String house_sold = "0";
+    private String total_earn = "0";
+
     @ManyToOne()
     @JoinColumn(name = "role_id")
     private Role role;
+
+    private String head_icon;
+//    private String un; //现在不写  以后时间有多把用户名显示成这个
+
+    @ManyToMany
+    private List<User> friends;
 
     @OneToMany(mappedBy = "user")
     private List<HouseInfo> houses;
