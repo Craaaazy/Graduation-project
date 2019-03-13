@@ -16,6 +16,7 @@
     <link th:href="@{/bower_components/select2/dist/css/select2.min.css}" href="../static/bower_components/select2/dist/css/select2.min.css" rel="stylesheet">
     <link th:href="@{/css/main.css?version=4.4.0}" href="../static/css/main.css?version=4.4.0" rel="stylesheet">
 
+    <link th:href="@{/css/baguetteBox.css}" rel="stylesheet">
   </head>
   <body class="white rentals-wrapper full-screen">
     <div class="all-wrapper rentals">
@@ -110,13 +111,28 @@
                 </div>
               </div>
               <div class="property-section-body">
-                <div class="property-note">
-                  <h6>
-                    Always communicate through
-                  </h6>
-                  <p>
-                    To protect your payment, never transfer money or communicate outside of the our website or app.
-                  </p>
+                <p th:text="${house.locate}"></p>
+              </div>
+            </div>
+
+            <div class="property-section">
+              <div class="property-section-header">
+                Picture
+                <div class="filter-toggle">
+                  <i class="os-icon-minus os-icon"></i>
+                </div>
+              </div>
+              <div class="property-section-body" id="pic_Zone">
+                <span th:text="${house.picture}" hidden="hidden" id="pics"></span>
+                <div class="gallery row">
+
+                    <a th:href="@{/img/img1.jpg}">
+                      <img src="../static/img/img1.jpg" style="height: 150px; width: 200px;" th:src="@{/img/img1.jpg}" alt="First image">
+                    </a>
+                    <a th:href="@{/img/img1.jpg}">
+                      <img src="../static/img/img1.jpg" style="height: 150px; width: 200px;" th:src="@{/img/img1.jpg}" alt="Second image">
+                    </a>
+
                 </div>
               </div>
             </div>
@@ -253,7 +269,7 @@
               </div>
             </div>
 
-            <div class="side-magic" style="background-image: url(img/property2.jpg)">
+            <div class="side-magic" style="background-image: url(http://localhost:8050/image/property1.jpg)">
               <div class="fader"></div>
               <h4 class="side-magic-title">
                 You have a listing to offer?
@@ -261,7 +277,7 @@
               <div class="side-magic-desc">
                 List your property on our site and get a special offer
               </div>
-              <a class="side-magic-btn" href="#">Submit Listing</a>
+              <a class="side-magic-btn" th:href="@{/regis}" href="#">Regis Now!</a>
             </div>
           </div>
         </div>
@@ -311,14 +327,21 @@
   <script th:src="@{/bower_components/bootstrap/js/dist/popover.js}" src="../static/bower_components/bootstrap/js/dist/popover.js"></script>
   <script th:src="@{/js/demo_customizer.js?version=4.4.0}" src="../static/js/demo_customizer.js?version=4.4.0"></script>
   <script th:src="@{/js/main.js?version=4.4.0}" src="../static/js/main.js?version=4.4.0"></script>
-  <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-      ga('create', 'UA-XXXXXXX-9', 'auto');
-      ga('send', 'pageview');
-  </script>
   <script th:src="@{/js/main_rentals.js?version=4.4.0}" src="../static/js/main_rentals.js?version=4.4.0"></script>
+<script th:src="@{/js/baguetteBox.js}"></script>
+<script>
+  $(document).ready(function(){
+      var pic = $('#pics').text().split(',');
+      var i=0;
+      $('div [id="pic"]').each(function(){
+          $(this).attr("src",'http://localhost:8050/image/' + pic[i++]);
+      })
+
+  })
+
+  $(function(){
+      baguetteBox.run('.gallery');
+  })
+</script>
 </html>

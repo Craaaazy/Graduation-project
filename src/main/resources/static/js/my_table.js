@@ -46,3 +46,32 @@ function onDelete(btn) {
     });
 
 }
+
+
+function onCheck(btn) {
+    var id = $(btn).parent("td").parent("tr").find("td:eq(0)").text();
+
+    $.confirm({
+        title: '确认审核',
+        buttons: {
+            confirm: function () {
+                $.ajax({
+                    url:'/admin/house/' + id,
+                    type:'put',
+
+                    success:function (res){
+                        window.location.reload();
+                    },
+                    error:function(res){
+
+                    }
+
+                })
+
+            },
+            cancel: function () {}
+
+        }
+    });
+
+}

@@ -17,10 +17,19 @@ $(document).ready(function () {
             })
 
             $('div [id="role"]').each(function(){
-                $(this).text("user");
+                if(res.role == 'ROLE_ADMIN')
+                    $(this).text("administator");
+                else
+                    $(this).text("user");
             })
 
+            if(res.role == 'ROLE_ADMIN'){
+                $('#admin_href').removeAttr("hidden");
+            }
 
+            $('#project_num').text(res.project_num);
+
+            $('#billing').text('￥' + res.balance);
 
         },
         error:function (res) {

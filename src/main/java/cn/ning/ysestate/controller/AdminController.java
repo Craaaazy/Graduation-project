@@ -1,6 +1,7 @@
 package cn.ning.ysestate.controller;
 
 
+import cn.ning.ysestate.dto.HouseDto;
 import cn.ning.ysestate.dto.SimpleUser;
 import cn.ning.ysestate.model.HouseInfo;
 import cn.ning.ysestate.model.User;
@@ -8,8 +9,10 @@ import cn.ning.ysestate.service.HouseService;
 import cn.ning.ysestate.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.*;
 
 @Controller
@@ -46,39 +49,44 @@ public class AdminController {
         return users;
     }
 
-    /***
-     * 获得全部houseinfo
-     * @return all houseinfo
-     */
     @GetMapping(value = "/houses")
-    public List<HouseInfo> getAllHouses(){
-        return houseService.findAll();
+    public String getMyHouses(ModelMap modelMap){
+        List<HouseInfo> houseInfo = houseService.findAll();
+        List<HouseDto> houses = new ArrayList<>();
+        HouseDto house;
+
+        for (int i = 0; i < houseInfo.size(); i++) {
+            house = new HouseDto();
+            house.setZone(houseInfo.get(i).getZone());
+            house.setUploadTime(houseInfo.get(i).getUploadTime());
+            house.setTitle(houseInfo.get(i).getTitle());
+            house.setCheck(houseInfo.get(i).isCheck());
+            house.setId(houseInfo.get(i).getId());
+            house.setSellPrice(houseInfo.get(i).getSellPrice());
+            house.setClick_Num(houseInfo.get(i).getClick_Num());
+
+            houses.add(house);
+        }
+
+        modelMap.addAttribute("houses", houses);
+        return "tables_admin";
     }
 
-    /***
-     * 更改审核状态 set true
-     * @param map houseinfo's title from
-     * @return checked
-     */
-    @PutMapping(value = "/house")
+
+    @PutMapping(value = "/house/{id}")
     @ResponseBody
-    public String putHouse(@RequestBody Map<String, String> map){
-        Optional<HouseInfo> houseInfo = houseService.findById(map.get("id"));
-        houseInfo.get().setCheck(true);
-        houseService.save(houseInfo.get());
+    public String putHouse(@PathVariable String id){
+        HouseInfo houseInfo = houseService.findById(id).get();
+        houseInfo.setCheck(true);
+        houseService.save(houseInfo);
 
         return "审核成功";
     }
 
-    /***
-     * 删除houseinfo
-     * @param map houseinfo's title from
-     * @return deleted
-     */
-    @DeleteMapping(value = "/house")
+    @DeleteMapping(value = "/house/{id}")
     @ResponseBody
-    public String deletehouse(@RequestBody Map<String, String> map){
-        houseService.deleteById(map.get("id"));
+    public String deletehouse(@PathVariable String id){
+        houseService.deleteById(id);
         return "删除成功";
     }
 

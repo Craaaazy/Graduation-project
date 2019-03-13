@@ -18,6 +18,8 @@ public class SimpleUser {
     private String house_sold;
     private String total_earn;
     private String head_icon;
+    private String balance;
+    private String project_num;
 
     public SimpleUser(@Email String email, List<HouseInfo> houses, Role role, String username) {
     }

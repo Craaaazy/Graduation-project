@@ -95,8 +95,8 @@ public class HouseController {
         houseDto.setOwner_name(houseInfo.getUser().getUsername());
         houseDto.setOwner_phone(houseInfo.getUser().getPhone_num());
         houseDto.setOwner_email(houseInfo.getUser().getEmail());
-//        houseDto.setHouse_pic(houseInfo.getHouse_pic().split(",")[0]);
         houseDto.setHouse_pic(houseInfo.getPic_front());
+        houseDto.setPicture(houseInfo.getHouse_pic());
         modelMap.addAttribute("house", houseDto);
 
         return "rentals_single";

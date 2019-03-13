@@ -38,7 +38,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         user1.setUsername("ning123");
         user1.setPassword("123");
         user1.setActive(true);
-        user1.setRole(role1);
+        user1.setRole(role2);
         user1.setEmail("382712256@qq.com");
         user1.setPhone_num("12345679");
         user1.setBalance("5000");
@@ -70,7 +70,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
             houseInfo.setUploadTime(df.format(new Date()));
             houseInfo.setUser(userService.findByUsername("ning123"));
             houseInfo.setTitle("NO." + i +" testhouse" + i);
-            houseInfo.setHouse_pic("test.PNG,test1.PNG,");
+            houseInfo.setHouse_pic("test.PNG,test.PNG,test.PNG,");
             houseInfo.setPic_front("test.PNG");
             houseInfo.setClick_Num((int)(Math.random()*100));
             houseInfo.setComment_Star(String.valueOf((int)(Math.random()*5)));

@@ -100,6 +100,8 @@ public class UserController {
         simpleUser.setHouse_sold(user.getHouse_sold());
         simpleUser.setUsername(user.getUsername());
         simpleUser.setRole(user.getRole().getName());
+        simpleUser.setBalance(user.getBalance());
+        simpleUser.setProject_num(String.valueOf(user.getHouses().size()));
 
         modelMap.addAttribute("user", user);
         return simpleUser;
