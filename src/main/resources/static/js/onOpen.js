@@ -1,3 +1,5 @@
+
+//我已经完全迷了，这个文件删了也没关系 但是我头像什么的都是靠这个ajax来获取的，删了也可以照常运行，alert也不会调用。
 $(document).ready(function () {
     $.ajax({
         url:'/user/info',
@@ -25,6 +27,7 @@ $(document).ready(function () {
 
             if(res.role == 'ROLE_ADMIN'){
                 $('#admin_href').removeAttr("hidden");
+                $('#bill_href').removeAttr("hidden");
             }
 
             $('#project_num').text(res.project_num);

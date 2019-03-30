@@ -122,16 +122,9 @@
                   <i class="os-icon-minus os-icon"></i>
                 </div>
               </div>
-              <div class="property-section-body" id="pic_Zone">
+              <div class="property-section-body" >
                 <span th:text="${house.picture}" hidden="hidden" id="pics"></span>
-                <div class="gallery row">
-
-                    <a th:href="@{/img/img1.jpg}">
-                      <img src="../static/img/img1.jpg" style="height: 150px; width: 200px;" th:src="@{/img/img1.jpg}" alt="First image">
-                    </a>
-                    <a th:href="@{/img/img1.jpg}">
-                      <img src="../static/img/img1.jpg" style="height: 150px; width: 200px;" th:src="@{/img/img1.jpg}" alt="Second image">
-                    </a>
+                <div class="gallery row" id="pic_Zone">
 
                 </div>
               </div>
@@ -334,9 +327,20 @@
   $(document).ready(function(){
       var pic = $('#pics').text().split(',');
       var i=0;
-      $('div [id="pic"]').each(function(){
-          $(this).attr("src",'http://localhost:8050/image/' + pic[i++]);
-      })
+
+      for (i=0; i<pic.length -1 && i<6; i++){
+
+          $('#pic_Zone').append("<a id='href"+i+"'><img id='src"+i+"' style='height: 150px; width: 200px;'/> </a>");
+          $("#href"+i).attr("href","http://localhost:8050/image/"+pic[i]);
+          $('#src'+i).attr("src",'http://localhost:8050/image/'+pic[i]);
+
+      }
+
+
+
+
+
+
 
   })
 

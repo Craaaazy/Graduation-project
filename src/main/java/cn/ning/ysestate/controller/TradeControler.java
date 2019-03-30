@@ -1,8 +1,10 @@
 package cn.ning.ysestate.controller;
 
 import cn.ning.ysestate.dto.HouseDto;
+import cn.ning.ysestate.model.Billings;
 import cn.ning.ysestate.model.HouseInfo;
 import cn.ning.ysestate.model.User;
+import cn.ning.ysestate.service.BillsService;
 import cn.ning.ysestate.service.HouseService;
 import cn.ning.ysestate.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +13,11 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Controller
 @RequestMapping(value = "/trade")
@@ -21,6 +27,8 @@ public class TradeControler {
     HouseService houseService;
     @Autowired
     UserService userService;
+    @Autowired
+    BillsService billsService;
 
 
     @GetMapping(value = "/{id}")
@@ -77,10 +85,23 @@ public class TradeControler {
                 seller.setHouse_sold(seller.getHouse_sold() + 1);
 
                 houseInfo.get().setSell(true);
-                houseService.save(houseInfo.get());
+
+                Billings bill = new Billings();
+                bill.setId(UUID.randomUUID().toString());
+                bill.setBuyer(buyer);
+                bill.setHouse(houseInfo.get());
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                bill.setTime(df.format(new Date()));
+
+                List<Billings> buyer_bills = buyer.getBillings();
+                buyer_bills.add(bill);
+                buyer.setBillings(buyer_bills);
+
+                billsService.save(bill);
                 userService.save(buyer);
                 userService.save(seller);
 
+                houseService.save(houseInfo.get());
                 return "交易成功";
             }
 

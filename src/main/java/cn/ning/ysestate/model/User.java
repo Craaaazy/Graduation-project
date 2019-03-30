@@ -50,6 +50,9 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<HouseInfo> houses;
 
+    @OneToMany(mappedBy = "buyer")
+    private List<Billings> billings;
+
     public User(String username, @NotNull String password, @Email String email, Boolean active, String varidateCode, Role role, List<HouseInfo> houses) {
         this.username = username;
         this.password = password;

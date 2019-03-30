@@ -1,7 +1,10 @@
 package cn.ning.ysestate.controller;
 
+import cn.ning.ysestate.dto.BillsDto;
 import cn.ning.ysestate.dto.SimpleUser;
+import cn.ning.ysestate.model.Billings;
 import cn.ning.ysestate.model.User;
+import cn.ning.ysestate.service.BillsService;
 import cn.ning.ysestate.service.HouseService;
 import cn.ning.ysestate.service.UserService;
 import com.sun.org.apache.xpath.internal.operations.Mod;
@@ -17,6 +20,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Controller
@@ -26,6 +31,8 @@ public class UserController {
     UserService userService;
     @Autowired
     HouseService houseService;
+    @Autowired
+    BillsService billsService;
     @Value("${file.uploadPath}")
     String fileUploadPath;
 
@@ -140,6 +147,27 @@ public class UserController {
 
     }
 
+
+    @GetMapping(value = "/billings")
+    public String getBillings(ModelMap modelMap, Principal principal){
+        List<Billings> bills = userService.findByUsername(principal.getName()).getBillings();
+        List<BillsDto> billsDtos = new ArrayList<>();
+        BillsDto b;
+
+        for(int i=0; i<bills.size(); i++){
+            b = new BillsDto();
+            b.setId(bills.get(i).getId());
+            b.setTitle(bills.get(i).getHouse().getTitle());
+            b.setSeller(bills.get(i).getHouse().getUser().getUsername());
+            b.setSellPrice(bills.get(i).getHouse().getSellPrice());
+            b.setTime(bills.get(i).getTime());
+
+            billsDtos.add(b);
+        }
+
+        modelMap.addAttribute("bills", billsDtos);
+        return "tables_billings";
+    }
 
 
 }
