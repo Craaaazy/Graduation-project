@@ -71,7 +71,10 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
             houseInfo.setUser(userService.findByUsername("ning123"));
             houseInfo.setTitle("NO." + i +" testhouse" + i);
             houseInfo.setHouse_pic("test.PNG,test.PNG,test.PNG,");
-            houseInfo.setPic_front("test.PNG");
+
+            int pic = (int) (Math.random()*3);
+            houseInfo.setPic_front("property" + pic + ".jpg");
+
             houseInfo.setClick_Num((int)(Math.random()*100));
             houseInfo.setComment_Star(String.valueOf((int)(Math.random()*5)));
 

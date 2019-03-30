@@ -6,6 +6,7 @@ import cn.ning.ysestate.model.HouseInfo;
 import cn.ning.ysestate.service.HouseService;
 import cn.ning.ysestate.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -15,10 +16,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -28,6 +26,7 @@ import javax.persistence.criteria.Root;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Controller
@@ -104,6 +103,13 @@ public class HouseController {
     }
 
 
+    @GetMapping(value = "/houselist/search={title}")
+    public String getSearch(@PathVariable String title, ModelMap modelMap){
+        List<HouseInfo> houses = houseService.findByTitleLike("%"+title+"%");
+        modelMap.addAttribute("size", houses.size());
+        modelMap.addAttribute("houses", houses);
+        return "rentals_index_list";
+    }
 
 
 }

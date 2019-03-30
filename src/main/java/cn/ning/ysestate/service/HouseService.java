@@ -16,6 +16,8 @@ public interface HouseService {
     Optional<HouseInfo> findById(String id);
     void deleteById(String id);
 
+    List<HouseInfo> findByTitleLike(String title);
+
     Page<HouseInfo> findAll(Pageable pageable);
     Page<HouseInfo> findAll(Specification<HouseInfo> specification, Pageable pageable);
 }

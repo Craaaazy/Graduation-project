@@ -27,7 +27,6 @@
       <!--------------------
       END - Top bar
       -------------------->
-
       <!--------------------
       START - Rentals Content
       -------------------->
@@ -35,88 +34,30 @@
         <!--------------------
         START - Property Index Filters
         -------------------->
-        <div class="filter-side">
-          <div class="filters-header">
-            <h4>
-              Filter
-            </h4>
-          </div>
-          <div class="filter-w">
-            <div class="filter-toggle">
-              <i class="os-icon-minus os-icon"></i>
-            </div>
-            <h6 class="filter-header">
-              Price Range
-            </h6>
-            <div class="filter-body">
-              <input class="ion-range-slider" type="text">
-            </div>
-          </div>
-          <div class="filter-w">
-            <div class="filter-toggle">
-              <i class="os-icon-minus os-icon"></i>
-            </div>
-            <h6 class="filter-header">
-              评价
-            </h6>
-            <div class="filter-body">
-              <div class="toggled-buttons solid">
-                <a class="btn btn-toggled off" href="#">1+</a><a class="btn btn-toggled off" href="#">2+</a><a class="btn btn-toggled off" href="#">3+</a><a class="btn btn-toggled on" href="#">4+</a><a class="btn btn-toggled off" href="#">5+</a>
-              </div>
-            </div>
-          </div>
-          <div class="filter-w">
-            <div class="filter-toggle">
-              <i class="os-icon-minus os-icon"></i>
-            </div>
-            <h6 class="filter-header">
-              Zone
-            </h6>
-            <div class="filter-body">
-              <select class="select2" multiple="false" name="">
-                <option>
-                 西塞山区
-                </option>
-                <option>
-                  黄石港区
-                </option>
-                <option selected="true">
-                  下陆区
-                </option>
-                <option>
-                  铁山区
-                </option>
-              </select>
-            </div>
-          </div>
-
-        </div>
         <!--------------------
         END - Property Index Filters
         -------------------->
+        <center style="font-size: 20px" th:if="${size == 0}">没有找到</center>
         <div class="rentals-list">
           <div class="list-controls">
-            <div class="list-info">
-              <span th:text="${page.totalElements}"></span> Properties found in YS
+            <div class="list-info" th:text="${size} + ' properties found.'">
+              1,240 Properties found in Brooklyn, NY
             </div>
           </div>
-          <div class="property-items as-grid">
+          <div class="property-items as-list">
             <!--------------------
-            单个houseinfo
+            START - Property Item
             -------------------->
-            <div class="property-item" th:each="house : ${page.content}">
+            <div class="property-item" th:each="house : ${houses}">
               <input th:type="hidden" th:value="${house.house_pic}" id="pic"/>
               <a class="item-media-w" href="rentals_single.html" th:href="@{/house_detail/}+${house.id}">
                 <div class="item-media" id="item-pic" th:style="'background-image:url(http://localhost:8050/image/' + ${house.pic_front} + ');'"></div>
-            </a>
+              </a>
               <div class="item-info">
                 <div class="item-features">
                   <div class="feature" th:text="${house.zone}">
                     5 Bedrooms
                   </div>
-                  <!--<div class="feature">-->
-                    <!--Entire Home-->
-                  <!--</div>-->
                 </div>
                 <h3 class="item-title">
                   <a href="rentals_single.html" th:text="${house.title}">Perfect Located 2BR Aspen Condo</a>
@@ -135,14 +76,14 @@
                       </option>
                       <option value="4" th:selected="${house.comment_Star == '4'}">
                         4
-                      <!--</option>-->
+                        <!--</option>-->
                       <option value="5" th:selected="${house.comment_Star == '5'}">
                         5
                       </option>
                     </select>
                   </div>
                   <div class="reviews-count" th:text="${house.click_Num} + ' ' + Reviews">
-                    ? Reviews
+                    12 Reviews
                   </div>
                 </div>
                 <div class="item-price-buttons">
@@ -156,54 +97,23 @@
               </div>
             </div>
             <!--------------------
-            END - 单个houseinfo
+            END - Property Item
             -------------------->
-          </div>
-          <!-- 分页 ok-->
-          <div class="pagination-w">
-            <div>
-            </div>
-            <div class="pagination-links">
-              <ul class="pagination">
-                <li class="page-item">
-                  <a class="page-link" th:if="${not page.isFirst()}" th:href="@{/houselist(start=${page.number-1})}"> Previous</a>
-                </li>
-                <!--<li class="page-item active">-->
-                  <!--<a class="page-link" href="#"> 1</a>-->
-                <!--</li>-->
-                <li class="page-item" th:each="i : ${#numbers.sequence(1, page.totalPages)}"
-                    th:classappend="${(page.number + 1) eq i} ? 'active' : ''" >
-                  <a class="page-link" th:attr="pageIndex=${i} - 1" th:href="@{/houselist(start=${i-1})}">
-                    <span th:text="${i}"></span>
-                  </a>
-                </li>
 
-                <li class="page-item">
-                  <a class="page-link" th:if="${not page.isLast()}" th:href="@{/houselist(start=${page.number+1})}"> Next</a>
-                </li>
-              </ul>
-            </div>
           </div>
-          <!-- 分页 ok-->
         </div>
-      </div>
-
-
-      <!--------------------
+      </div><!--------------------
       END - Rentals Content
       -------------------->
-
       <!--------------------
       START - Footer
       -------------------->
-      <div th:replace="fragments/footer :: default"></div>
       <!--------------------
       END - Footer
       -------------------->
     </div>
     <div class="display-type"></div>
   </body>
-
   <script th:src="@{/bower_components/jquery/dist/jquery.min.js}" src="../static/bower_components/jquery/dist/jquery.min.js"></script>
   <script th:src="@{/bower_components/popper.js/dist/umd/popper.min.js}" src="../static/bower_components/popper.js/dist/umd/popper.min.js"></script>
   <script th:src="@{/bower_components/moment/moment.js}" src="../static/bower_components/moment/moment.js"></script>
@@ -236,9 +146,6 @@
   <script th:src="@{/js/main.js?version=4.4.0}" src="../static/js/main.js?version=4.4.0"></script>
 
   <script th:src="@{/js/main_rentals.js?version=4.4.0}" src="../static/js/main_rentals.js?version=4.4.0"></script>
-  <script th:src="@{/js/search.js}"></script>
-<script>
 
-</script>
-
+<script th:src="@{/js/search.js}"></script>
 </html>

@@ -21,4 +21,5 @@ public interface HouseReprository extends JpaRepository<HouseInfo, String> {
     Page<HouseInfo> findAll(Pageable pageable);
     Page<HouseInfo> findAll(Specification<HouseInfo> specification,Pageable pageable);
 
+    List<HouseInfo> findByTitleLike(String title);
 }

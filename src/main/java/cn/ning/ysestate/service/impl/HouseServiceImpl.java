@@ -44,6 +44,11 @@ public class HouseServiceImpl implements HouseService {
     }
 
     @Override
+    public List<HouseInfo> findByTitleLike(String title) {
+        return houseReprository.findByTitleLike(title);
+    }
+
+    @Override
     public Page<HouseInfo> findAll(Pageable pageable) {
         return houseReprository.findAll(pageable);
     }
