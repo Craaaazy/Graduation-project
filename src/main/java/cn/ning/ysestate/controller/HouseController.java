@@ -6,7 +6,6 @@ import cn.ning.ysestate.model.HouseInfo;
 import cn.ning.ysestate.service.HouseService;
 import cn.ning.ysestate.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
